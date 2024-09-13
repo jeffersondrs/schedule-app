@@ -32,12 +32,12 @@ export default function Form({ onSubmit }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3 w-full">
-      <div className="flex flex-col justify-center items-start w-full">
+      <div className="flex flex-col justify-center items-start w-full gap-2">
         <h1 className="text-2xl font-bold text-gray-200">Schedule your appointment</h1>
-        <p className="text-sm font-normal text-texting">Please fill in the customer details to schedule the appointment. Ensure you include all necessary information to guarantee efficient and personalized service.</p>
+        <p className="text-xs font-normal text-texting">Please fill in the customer details to schedule the appointment. Ensure you include all necessary information to guarantee efficient and personalized service.</p>
       </div>
       <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label htmlFor="phone" className="text-sm font-bold text-gray-200">
+        <label htmlFor="phone" className="text-xs font-bold text-gray-200">
           Name
         </label>
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md px-2">
@@ -48,7 +48,7 @@ export default function Form({ onSubmit }: FormProps) {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full h-full bg-primary text-gray-200 p-2 rounded-md focus:outline-none"
+            className="w-full h-full bg-primary text-xs text-gray-200 p-2 rounded-md focus:outline-none"
           />
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function Form({ onSubmit }: FormProps) {
       </div>
       <div className="flex flex-col justify-center items-start gap-1 w-full">
 
-        <label htmlFor="service" className="text-sm font-bold text-gray-200">
+        <label htmlFor="service" className="text-xs font-bold text-gray-200">
           Description
         </label>
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md p-2">
@@ -72,7 +72,7 @@ export default function Form({ onSubmit }: FormProps) {
         </div>
       </div>
       <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label htmlFor="scheduleTime" className="text-sm font-bold text-gray-200">
+        <label htmlFor="scheduleTime" className="text-xs font-bold text-gray-200">
           Date
         </label>
         <div className="w-full">
@@ -80,7 +80,7 @@ export default function Form({ onSubmit }: FormProps) {
         </div>
       </div>
       <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label htmlFor="scheduleDate" className="text-sm font-bold text-gray-200">
+        <label htmlFor="scheduleDate" className="text-xs font-bold text-gray-200">
         </label>
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md px-3 gap-2">
           <IoMdClock className="w-5 h-5 text-purple-700" />
@@ -92,7 +92,7 @@ export default function Form({ onSubmit }: FormProps) {
         <button
           type="submit"
           className="bg-purple-700 hover:bg-purple-900 text-gray-950 hover:text-gray-50 transform
-        transition-all duration-300 ease-in-out z-10
+        transition-all duration-300 ease-in-out z-10 text-sm
         shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
         >
           Agendar

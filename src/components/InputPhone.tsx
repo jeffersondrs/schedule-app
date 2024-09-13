@@ -22,7 +22,7 @@ export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
           onChange={(e) => setPhone(e.target.value)}
           placeholder="(00) 00000-0000"
           value={phone}
-          className="w-full h-full bg-primary text-gray-200 p-2 rounded-md focus:outline-none"
+          className="w-full h-full bg-primary text-gray-200 p-2 rounded-md focus:outline-none text-xs"
         />
       </div>
     </>

@@ -25,18 +25,18 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
               <BsFillMoonStarsFill className="w-5 h-5 text-yellow-400" />
             ) : null
           }
-          <p className="tracking-wider text-white font-bold text-lg capitalize">{periodOfDay}</p>
+          <p className="tracking-wider text-white font-bold text-base capitalize">{periodOfDay}</p>
         </div>
         {periodOfDay === 'morning' ? (<div className="flex flex-row justify-end gap-2 w-full p-2">
-          <p className="tracking-wider text-lg font-bold text-gray-400">9h-12h</p>
+          <p className="tracking-wider text-base font-bold text-gray-400">9h-12h</p>
         </div>) : periodOfDay === 'afternoon' ? (<div className="flex flex-row justify-end gap-2 w-full p-2">
-          <p className="tracking-wider text-lg font-bold text-gray-400">13h-18h</p>
+          <p className="tracking-wider text-base font-bold text-gray-400">13h-18h</p>
         </div>) : periodOfDay === 'night' ? (<div className="flex flex-row justify-end gap-2 w-full p-2">
-          <p className="tracking-wider text-lg font-bold text-gray-400">19h-21h</p>
+          <p className="tracking-wider text-base font-bold text-gray-400">19h-21h</p>
         </div>) : null}
 
         <div className="flex flex-col justify-center items-center">
-          <button onClick={toggleExpand} className="text-gray-400 font-bold text-lg transform transition-all duration-300 ease-in-out">
+          <button onClick={toggleExpand} className="text-gray-400 font-bold text-base transform transition-all duration-300 ease-in-out">
             <FaChevronDown className={`w-5 h-5 ${isExpanded ? 'rotate-180' : ''}`} />
           </button>
         </div>
@@ -46,11 +46,11 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
         {dailyList.map((schedule) => (
           <div key={schedule.id} className="flex flex-col justify-center items-start border-b border-gray-primary p-4 md:flex-row md:gap-3 last:border-0">
             <div className="flex flex-row gap-3 justify-between md:flex-row md:w-96">
-              <p className="tracking-wider text-sm font-bold text-gray-200">{schedule.scheduleTime}</p>
-              <p className="tracking-wider text-sm font-light text-gray-400">{schedule.userSchedule}</p>
+              <p className="tracking-wider text-xs font-bold text-gray-200">{schedule.scheduleTime}</p>
+              <p className="tracking-wider text-xs font-light text-gray-400">{schedule.userSchedule}</p>
             </div>
             <div className="flex flex-row w-full">
-              <p className="tracking-wider text-sm font-normal text-gray-400">{schedule.scheduleDescription}</p>
+              <p className="tracking-wider text-xs font-normal text-gray-400">{schedule.scheduleDescription}</p>
             </div>
             <div className="flex flex-row justify-end items-center w-full">
               <button className="text-xs font-normal text-gray-600">Remove schedule</button>

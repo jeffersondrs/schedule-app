@@ -24,7 +24,7 @@ export default function BasicTimePicker({ time, setTime }: TimeButtonProps) {
   return (
     <div className="relative w-full flex flex-row items-center justify-center">
       <div className="flex flex-row justify-between items-center w-full">
-        <button ref={buttonRef} className="w-full h-10 bg-primary text-gray-300 rounded-md text-start"
+        <button ref={buttonRef} className="w-full h-10 bg-primary text-gray-300 rounded-md text-start text-xs"
           onClick={handleIsOpened}>
           {time}
         </button>
@@ -41,7 +41,7 @@ export default function BasicTimePicker({ time, setTime }: TimeButtonProps) {
             className="absolute bottom-full mb-2 right-0 w-60 bg-primary rounded-md shadow-lg grid grid-cols-3 gap-1 border border-gray-primary p-2"
           >
             {hours.map((hour, index) => (
-              <button key={index} className="p-2 hover:bg-secondary rounded-md cursor-pointer text-gray-100 text-center" onClick={() => handleTime(hour)}>
+              <button key={index} className="p-2 hover:bg-secondary rounded-md cursor-pointer text-gray-100 text-center text-xs" onClick={() => handleTime(hour)}>
                 {hour}
               </button>
             ))}

@@ -41,7 +41,7 @@ export default function DateButton({ date, setDate }: DateButtonProps) {
         <div className="flex flex-row justify-center items-center w-full">
           <input
             type="button"
-            className="w-full h-12 text-sm font-normal text-gray-300 focus:outline-none text-start"
+            className="w-full h-12 text-xs font-normal text-gray-300 focus:outline-none text-start"
             value={inputDate}
             onClick={toggleCalendar}
           />
