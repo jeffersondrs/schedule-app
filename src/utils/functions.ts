@@ -1,4 +1,3 @@
-import { Dayjs } from 'dayjs';
 import { ScheduleProps } from "./types";
 
 export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
