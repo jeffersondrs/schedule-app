@@ -20,6 +20,13 @@ export default function CalendarUi({ selectedDate, handleDateChange }: CalendarU
       <DateCalendar
         value={selectedDate}
         onChange={handleDateChange}
+        slotProps={{
+          switchViewButton: {
+            sx: {
+              color: '#d1d5db',
+            },
+          }
+        }}
         sx={{
           backgroundColor: '#030712',
           color: '#6b7280',
@@ -27,7 +34,7 @@ export default function CalendarUi({ selectedDate, handleDateChange }: CalendarU
             color: '#6b7280',
             '&.Mui-selected': {
               backgroundColor: '#6b21a8',
-              color: '#ffffff',
+              color: '#d1d5db',
             },
             '&.Mui-selected:hover': {
               backgroundColor: 'dark#6b7280',

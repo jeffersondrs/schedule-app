@@ -1,15 +1,20 @@
 "use client";
 
 import React from "react";
-import { DateButton, Button } from "@/components";
+import { DateButton, Button, Modal } from "@/components";
 import DailyList from "@/components/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
 import { dataSchedules } from "@/utils/constants";
+import Form from "@/components/Form";
 
 export default function Home() {
   const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(dayjs(), dataSchedules);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(!isModalOpen);
+  }
 
   return (
     <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-5 relative">
@@ -29,8 +34,11 @@ export default function Home() {
         <DailyList periodOfDay="afternoon" dailyList={filteredAppointments.afternoon} />
         <DailyList periodOfDay="night" dailyList={filteredAppointments.night} />
       </main>
+      <Modal isOpen={isModalOpen} isClose={handleOpenModal}>
+        <Form onSubmit={() => { }} />
+      </Modal>
       <div className="bottom-3 right-5 fixed">
-        <Button title="Novo agendamento" onClick={() => console.log("Button clicked")} />
+        <Button title="Novo agendamento" onClick={handleOpenModal} />
       </div>
     </div>
   );
