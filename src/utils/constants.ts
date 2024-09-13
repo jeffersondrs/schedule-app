@@ -29,14 +29,14 @@ export const dataSchedules: ScheduleProps[] = [
       : "123456789", scheduleDescription: "Service description", scheduleTime: "12:00", userSchedule: "User name"
   },
   {
-    id: "8", dateSchedule: "2024-10-12", phoneScheduleUser
+    id: "8", dateSchedule: "2024-09-12", phoneScheduleUser
       : "123456789", scheduleDescription: "Service description", scheduleTime: "13:00", userSchedule: "User name"
   },
   {
     id: "9", dateSchedule: "2024-09-12", phoneScheduleUser: "123456789", scheduleDescription: "Service description", scheduleTime: "19:00", userSchedule: "User name"
   },
   {
-    id: "10", dateSchedule: "2024-01-01", phoneScheduleUser: "123",
+    id: "10", dateSchedule: "2024-09-12", phoneScheduleUser: "123",
     scheduleDescription: "Service description", scheduleTime: "20:00", userSchedule: "User name"
   },
 ];
