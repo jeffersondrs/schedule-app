@@ -13,10 +13,10 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full bg-gray-800 rounded-xl py-2">
-      <header className={`flex flex-row justify-between items-center w-full ${dailyList.length && isExpanded ? 'border-b' : ''
+    <div className="flex flex-col justify-center items-center bg-gray-800 rounded-xl py-2 w-full">
+      <header className={`flex flex-row justify-center items-center w-full ${dailyList.length && isExpanded ? 'border-b' : ''
         } border-gray-700 px-3`}>
-        <div className="w-full flex flex-row justify-start items-center gap-2 p-2">
+        <div className="flex flex-row justify-center items-center gap-2 p-2">
           {
             periodOfDay === 'morning' ? (
               <IoSunny className="w-4 h-4 text-blue-400" />
@@ -26,7 +26,7 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
               <BsFillMoonStarsFill className="w-5 h-5 text-yellow-400" />
             ) : null
           }
-          <p className="w-1/2 text-white font-bold text-lg capitalize">{periodOfDay}</p>
+          <p className="text-white font-bold text-lg capitalize">{periodOfDay}</p>
         </div>
         {periodOfDay === 'morning' ? (<div className="flex flex-row justify-end gap-2 w-full p-2">
           <p className="text-lg font-bold text-gray-400">9h-12h</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { DateButton } from "@/components";
+import { DateButton, Button } from "@/components";
 import DailyList from "@/components/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
@@ -12,7 +12,7 @@ export default function Home() {
   const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(dayjs(), dataSchedules);
 
   return (
-    <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-5">
+    <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-5 relative">
       <header className="flex flex-col justify-center items-start">
         <div className="-translate-x-4 w-56 h-16 bg-purple-900 rounded-br-xl mb-5 p-2 flex flex-row justify-center items-center gap-2">
           <BsCalendarDateFill className="w-8 h-8 text-purple-500" />
@@ -24,11 +24,14 @@ export default function Home() {
           <DateButton date={selectedDate.format('DD/MM/YYYY')} setDate={(date) => setSelectedDate(dayjs(date, 'DD/MM/YYYY'))} />
         </div>
       </header>
-      <main className="flex flex-col justify-start items-center w-full h-full px-4 mt-2 gap-4">
+      <main className="w-full h-full flex flex-col gap-4">
         <DailyList periodOfDay="morning" dailyList={filteredAppointments.morning} />
         <DailyList periodOfDay="afternoon" dailyList={filteredAppointments.afternoon} />
         <DailyList periodOfDay="night" dailyList={filteredAppointments.night} />
       </main>
+      <div className="bottom-3 right-5 fixed">
+        <Button title="Novo agendamento" onClick={() => console.log("Button clicked")} />
+      </div>
     </div>
   );
 }
