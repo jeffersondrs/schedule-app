@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoPerson } from "react-icons/io5";
 import { ScheduleProps } from "../utils/types";
 import DateButton from "./DateButtom";
-import BasicTimePicker from "./TimeButtom";
+import BasicTimePicker from "./TimeButton";
 import { IoMdClock } from "react-icons/io";
 import InputPhone from "./InputPhone";
 import { formatPhoneNumber } from "@/utils/functions";

@@ -1,13 +1,12 @@
 "use client";
 
 import React from "react";
-import { DateButton, Button, Modal } from "@/components";
+import { DateButton, Button, Modal, Form } from "@/components";
 import DailyList from "@/components/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
 import { dataSchedules } from "@/utils/constants";
-import Form from "@/components/Form";
 
 export default function Home() {
   const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(dayjs(), dataSchedules);
