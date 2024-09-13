@@ -1,3 +1,4 @@
+import { text } from "stream/consumers";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -16,7 +17,8 @@ const config: Config = {
         tertiary: "#151515",
         gray: {
           primary: "#3E3C41",
-        }
+        },
+        texting: "#98959D"
       },
     },
   },

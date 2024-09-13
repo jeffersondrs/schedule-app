@@ -32,9 +32,9 @@ export default function Form({ onSubmit }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3 w-full">
-      <div className="flex flex-col justify-start items-center">
+      <div className="flex flex-col justify-center items-start w-full">
         <h1 className="text-2xl font-bold text-gray-200">Schedule your appointment</h1>
-        <p className="text-sm font-normal text-gray-300">Fill in the fields below to schedule your appointment.</p>
+        <p className="text-sm font-normal text-texting">Please fill in the customer details to schedule the appointment. Ensure you include all necessary information to guarantee efficient and personalized service.</p>
       </div>
       <div className="flex flex-col justify-center items-start gap-1 w-full">
         <label htmlFor="phone" className="text-sm font-bold text-gray-200">
