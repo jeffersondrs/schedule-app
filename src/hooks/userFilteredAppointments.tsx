@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import { ScheduleProps } from "@/utils/types";
 import { filterSchedulesByDayAndPeriod } from "@/utils/functions";
 

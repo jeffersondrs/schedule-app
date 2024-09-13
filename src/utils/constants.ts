@@ -1,5 +1,4 @@
 import { ScheduleProps } from "./types";
-import { filterSchedulesByDayAndPeriod } from "./functions";
 
 export const dataSchedules: ScheduleProps[] = [
   { id: "", dateSchedule: "2024-09-12", phoneScheduleUser: "123456789", scheduleDescription: "Service description", scheduleTime: "09:00", userSchedule: "User name"
