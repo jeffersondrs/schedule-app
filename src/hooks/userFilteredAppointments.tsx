@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { Dayjs } from 'dayjs';
 import { ScheduleProps } from "@/utils/types";

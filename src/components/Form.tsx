@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 import { IoPerson } from "react-icons/io5";
 import { ScheduleProps } from "../utils/types";
@@ -6,6 +8,7 @@ import BasicTimePicker from "./TimeButton";
 import { IoMdClock } from "react-icons/io";
 import InputPhone from "./InputPhone";
 import { formatPhoneNumber } from "@/utils/functions";
+import dayjs from "dayjs";
 
 interface FormProps {
   onSubmit: (data: ScheduleProps) => void;
@@ -14,24 +17,25 @@ interface FormProps {
 export default function Form({ onSubmit }: FormProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [service, setService] = useState("");
+  const [scheduleDescription, setScheduleDescription] = useState("");
   const [scheduleTime, setScheduleTime] = useState("");
   const [scheduleDate, setScheduleDate] = useState("");
+  const today = dayjs().format("YYYY-MM-DD");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit({ id: "", userSchedule: name, phoneScheduleUser: phone, scheduleDescription: service, scheduleTime:
-      scheduleTime, dateSchedule: scheduleDate });
+    onSubmit({
+      id: "", userSchedule: name, phoneScheduleUser: phone, scheduleDescription: scheduleDescription, scheduleTime:
+        scheduleTime, dateSchedule: scheduleDate, createdAt: today, updatedAt: today
+    });
   };
 
   const handleChange = (phone: string) => {
     setPhone(formatPhoneNumber(phone));
   };
 
-  console.log(phone, name, service, scheduleTime, scheduleDate);
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3 w-full">
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3 w-full z-50">
       <div className="flex flex-col justify-center items-start w-full gap-2">
         <h1 className="text-2xl font-bold text-gray-200">Schedule your appointment</h1>
         <p className="text-xs font-normal text-texting">Please fill in the customer details to schedule the appointment. Ensure you include all necessary information to guarantee efficient and personalized service.</p>
@@ -63,8 +67,8 @@ export default function Form({ onSubmit }: FormProps) {
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md p-2">
           <textarea
             id="service"
-            value={service}
-            onChange={(e) => setService(e.target.value)}
+            value={scheduleDescription}
+            onChange={(e) => setScheduleDescription(e.target.value)}
             className="w-full h-24 bg-primary text-gray-200 rounded-md resize-none focus:outline-none"
             rows={4}
 

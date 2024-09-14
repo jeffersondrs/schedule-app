@@ -7,13 +7,16 @@ import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
 import { dataSchedules } from "@/utils/constants";
+import { observer } from 'mobx-react-lite';
+import { useStore } from '@/store/storeContext';
 
-export default function Home() {
+const Home = () => {
   const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(dayjs(), dataSchedules);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
   }
+  const {  } = useStore();
 
   return (
     <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-5 relative">
@@ -32,6 +35,7 @@ export default function Home() {
           </div>
         </div>
       </header>
+
       <main className="w-full h-full flex flex-col gap-4 md:max-w-4xl">
         <DailyList periodOfDay="morning" dailyList={filteredAppointments.morning} />
         <DailyList periodOfDay="afternoon" dailyList={filteredAppointments.afternoon} />
@@ -45,4 +49,5 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+export default observer(Home);

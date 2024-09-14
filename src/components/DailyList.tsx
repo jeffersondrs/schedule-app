@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { IoSunny, IoPartlySunnySharp } from "react-icons/io5";
 import { BsFillMoonStarsFill } from "react-icons/bs";
@@ -36,7 +38,7 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
         </div>) : null}
 
         <div className="flex flex-col justify-center items-center">
-          <button onClick={toggleExpand} className="text-gray-400 font-bold text-base transform transition-all duration-300 ease-in-out">
+          <button aria-label="button" onClick={toggleExpand} className="text-gray-400 font-bold text-base transform transition-all duration-300 ease-in-out">
             <FaChevronDown className={`w-5 h-5 ${isExpanded ? 'rotate-180' : ''}`} />
           </button>
         </div>
