@@ -1,4 +1,5 @@
-// stores/StoreContext.tsx
+"use client";
+
 import React, { createContext, useContext } from "react";
 import scheduleStore from "./appointmentStore";
 
