@@ -8,39 +8,62 @@ class ScheduleStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    if (typeof window !== 'undefined') {
+      this.loadSchedules();
+    }
   }
 
-  // Adiciona um novo agendamento
   addSchedule(schedule: Omit<ScheduleProps, "id" | "createdAt" | "updatedAt">) {
     const newSchedule: ScheduleProps = {
       ...schedule,
-      id: uuidv4(), // gera um ID único
+      id: uuidv4(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
     this.schedules.push(newSchedule);
+    this.saveSchedules();
   }
 
-  // Atualiza um agendamento existente
   updateSchedule(id: string, updatedSchedule: Partial<ScheduleProps>) {
-    const index = this.schedules.findIndex(schedule => schedule.id === id);
+    const index = this.schedules.findIndex((schedule) => schedule.id === id);
     if (index !== -1) {
       this.schedules[index] = {
         ...this.schedules[index],
         ...updatedSchedule,
         updatedAt: new Date().toISOString(),
       };
+      this.saveSchedules();
     }
   }
 
-  // Remove um agendamento
   removeSchedule(id: string) {
-    this.schedules = this.schedules.filter(schedule => schedule.id !== id);
+    this.schedules = this.schedules.filter((schedule) => schedule.id !== id);
+    this.saveSchedules();
   }
 
-  // Pega um agendamento por ID
   getScheduleById(id: string) {
-    return this.schedules.find(schedule => schedule.id === id);
+    return this.schedules.find((schedule) => schedule.id === id);
+  }
+
+  saveSchedules() {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("schedules", JSON.stringify(this.schedules));
+    }
+  }
+
+  loadSchedules() {
+    if (typeof window !== 'undefined') {
+      const schedules = localStorage.getItem("schedules");
+      if (schedules) {
+        this.schedules = JSON.parse(schedules);
+      }
+    }
+  }
+
+  deleteStore() {
+    this.schedules = [];
+    this.saveSchedules();
   }
 }
 

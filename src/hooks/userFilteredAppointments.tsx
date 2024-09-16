@@ -1,27 +1,31 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { ScheduleProps } from "@/utils/types";
 import { filterSchedulesByDayAndPeriod } from "@/utils/functions";
+import { useStore } from '@/store/storeContext';
 
-const useFilteredAppointments = (initialDate: Dayjs, schedules: ScheduleProps[]) => {
-  const [selectedDate, setSelectedDate] = useState<Dayjs>(initialDate);
+const useFilteredAppointments = (initialDate: string) => {
+  const [selectedDate, setSelectedDate] = useState(dayjs(initialDate) as Dayjs);
   const [filteredAppointments, setFilteredAppointments] = useState<{
     morning: ScheduleProps[];
     afternoon: ScheduleProps[];
-    night: ScheduleProps[];
+    evening: ScheduleProps[];
   }>({
     morning: [],
     afternoon: [],
-    night: []
+    evening: []
   });
 
+  const { scheduleStore } = useStore();
+
   useEffect(() => {
-    const formattedDate = selectedDate.format('YYYY-MM-DD');
-    const filtered = filterSchedulesByDayAndPeriod(schedules, formattedDate);
+    const formattedDate = selectedDate.format('DD/MM/YYYY');
+    const filtered = filterSchedulesByDayAndPeriod(scheduleStore.schedules, formattedDate);
     setFilteredAppointments(filtered);
-  }, [selectedDate, schedules]);
+
+  }, [selectedDate, scheduleStore.schedules]);
 
   return {
     selectedDate,

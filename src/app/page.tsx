@@ -6,24 +6,24 @@ import DailyList from "@/components/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
-import { dataSchedules } from "@/utils/constants";
-import { observer } from 'mobx-react-lite';
-import { useStore } from '@/store/storeContext';
 
 const Home = () => {
-  const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(dayjs(), dataSchedules);
+  const todayFormatted = dayjs();
+
+  const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(
+    dayjs(todayFormatted).format('DD/MM/YYYY')
+  );
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
-  }
-  const {  } = useStore();
+  };
 
   return (
-    <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-5 relative">
-      <header className="flex flex-col justify-center items-start">
-        <div className="-translate-x-4 w-56 h-16 bg-purple-900 rounded-br-xl mb-5 p-2 flex flex-row justify-center items-center gap-2">
-          <BsCalendarDateFill className="w-8 h-8 text-purple-500" />
-          <p className="text-base font-bold text-gray-200">Schedule-App</p>
+    <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-3 relative">
+      <header className="flex flex-col justify-center items-start w-full max-w-4xl">
+        <div className="max-w-56 h-16 bg-primary rounded-br-xl mb-5 p-2 flex flex-row justify-center items-center gap-2">
+          <BsCalendarDateFill className="w-8 h-8 text-[#9282FA]" />
+          <p className="text-base font-bold text-[#9282FA] uppercase">Schedule App</p>
         </div>
         <div className="flex flex-col justify-center items-start max-w-[350px] gap-2 md:flex-row md:max-w-4xl md:py-3">
           <div className="w-full h-full flex-col justify-start items-center">
@@ -31,23 +31,23 @@ const Home = () => {
             <p className="text-xs font-normal text-gray-300">Here you can see all clients and services scheduled for today.</p>
           </div>
           <div className="flex flex-col justify-center items-center md:w-96">
-            <DateButton date={selectedDate.format('DD/MM/YYYY')} setDate={(date) => setSelectedDate(dayjs(date, 'DD/MM/YYYY'))} />
+            <DateButton date={selectedDate.format('DD-MM-YYYY')} setDate={(date) => setSelectedDate(dayjs(date, 'DD/MM/YYYY'))} />
           </div>
         </div>
       </header>
 
-      <main className="w-full h-full flex flex-col gap-4 md:max-w-4xl">
-        <DailyList periodOfDay="morning" dailyList={filteredAppointments.morning} />
-        <DailyList periodOfDay="afternoon" dailyList={filteredAppointments.afternoon} />
-        <DailyList periodOfDay="night" dailyList={filteredAppointments.night} />
-      </main>
+      <DailyList periodOfDay="Morning" dailyList={filteredAppointments.morning} />
+      <DailyList periodOfDay="Afternoon" dailyList={filteredAppointments.afternoon} />
+      <DailyList periodOfDay="Evening" dailyList={filteredAppointments.evening} />
+
       <Modal isOpen={isModalOpen} isClose={handleOpenModal}>
-        <Form onSubmit={() => { }} />
+        <Form />
       </Modal>
-      <div className="bottom-3 right-5 fixed">
+      <div className="bottom-0 right-0 fixed md:right-5 md:bottom-5">
         <Button title="Novo agendamento" onClick={handleOpenModal} />
       </div>
     </div>
   );
 };
-export default observer(Home);
+
+export default Home;

@@ -1,4 +1,4 @@
-import { ScheduleProps } from "./types";
+import { ActionType, FormState, ScheduleProps } from "./types";
 
 export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
   return data.sort((a, b) => {
@@ -15,8 +15,9 @@ export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
 export const filterSchedulesByDayAndPeriod = (
   data: ScheduleProps[],
   day: string
-): { morning: ScheduleProps[], afternoon: ScheduleProps[], night: ScheduleProps[] } => {
-  const filteredData = data.filter((schedule) => schedule.dateSchedule === day);
+): { morning: ScheduleProps[], afternoon: ScheduleProps[], evening: ScheduleProps[] } => {
+
+  const filteredData = data.filter((schedule) => schedule.scheduleDate === day);
 
   const morning = filteredData.filter((schedule) => {
     const hour = parseInt(schedule.scheduleTime.split(":")[0], 10);
@@ -28,7 +29,7 @@ export const filterSchedulesByDayAndPeriod = (
     return hour >= 13 && hour < 18;
   });
 
-  const night = filteredData.filter((schedule) => {
+  const evening = filteredData.filter((schedule) => {
     const hour = parseInt(schedule.scheduleTime.split(":")[0], 10);
     return hour >= 18 && hour < 24;
   });
@@ -36,7 +37,7 @@ export const filterSchedulesByDayAndPeriod = (
   return {
     morning: sortSchedules(morning),
     afternoon: sortSchedules(afternoon),
-    night: sortSchedules(night),
+    evening: sortSchedules(evening),
   };
 };
 
@@ -49,3 +50,10 @@ export const formatPhoneNumber = (value: string) => {
   }
   return value;
 };
+
+export function reducer(state: FormState, action: ActionType): FormState {
+  return {
+    ...state,
+    [action.field]: action.value,
+  };
+}

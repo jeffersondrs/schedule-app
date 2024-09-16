@@ -4,8 +4,8 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Dayjs } from 'dayjs';
 
 type CalendarUiProps = {
-  selectedDate: Dayjs | null;
-  handleDateChange: (newDate: Dayjs | null) => void;
+  selectedDate: Dayjs;
+  handleDateChange: (newDate: Dayjs) => void;
 };
 
 export default function CalendarUi({ selectedDate, handleDateChange }: CalendarUiProps) {
