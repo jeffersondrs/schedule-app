@@ -7,10 +7,8 @@ import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
 import { observer } from "mobx-react-lite";
-// import { useStore } from "@/store/storeContext";
 
 const Home = () => {
-  // const { scheduleStore } = useStore();
   const { setSelectedDate, filteredAppointments } = useFilteredAppointments();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {

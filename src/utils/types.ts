@@ -51,14 +51,9 @@ export type ActionType =
   | { field: "scheduleTime"; value: string }
   | { field: "scheduleDate"; value: string };
 
-export interface DailyContentList extends Pick<DailyListProps, "dailyList"> {
-  isExpanded: boolean;
-}
+export interface DailyContentList extends Pick<DailyListProps, "dailyList"> {}
 
-export interface DailyHeaderProps extends Pick<DailyListProps, "periodOfDay"> {
-  toggleExpand: () => void;
-  isExpanded: boolean;
-}
+export type DailyHeaderProps = Omit<DailyListProps, 'dailyList'>;
 
 export type ToggleIconProps = {
   isOpen: boolean;

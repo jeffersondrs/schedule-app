@@ -9,7 +9,7 @@ interface DailyContentProps extends DailyContentList {
   handleRemoveSchedule: () => void;
 }
 
-const DailyContent = ({ isExpanded, dailyList, isModalOpen, handleRemoveSchedule }: DailyContentProps) => {
+const DailyContent = ({ dailyList, isModalOpen, handleRemoveSchedule }: DailyContentProps) => {
   const { scheduleStore } = useStore();
 
   const removeSchedule = (scheduleId: string) => {
@@ -18,7 +18,7 @@ const DailyContent = ({ isExpanded, dailyList, isModalOpen, handleRemoveSchedule
   };
 
   return (
-    <main className={`transition-all duration-500 ease-in-out w-full px-5 ${isExpanded ? 'max-h-96 overflow-y-auto my-5' : ''}`}>
+    <main className={`transition-all duration-500 ease-in-out w-full px-5 `}>
       {dailyList.map((schedule) => (
         <>
           <ScheduleRow

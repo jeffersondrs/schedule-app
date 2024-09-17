@@ -81,12 +81,12 @@ export default function Form() {
         }
         theme="dark"
       />
-      <div className="flex flex-col justify-center items-start w-full gap-2">
+      <header className="flex flex-col justify-center items-start w-full gap-2">
         <h1 className="text-2xl font-bold text-gray-200">Schedule your appointment</h1>
         <p className="text-xs font-normal text-texting">
           Please fill in the customer details to schedule the appointment. Ensure you include all necessary information to guarantee efficient and personalized service.
         </p>
-      </div>
+      </header>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">
         <label htmlFor="name" className="text-xs font-bold text-gray-200">Name</label>
@@ -130,14 +130,14 @@ export default function Form() {
         <BasicTimePicker title={scheduleTime} setTime={(time) => handleChange("scheduleTime", time)} />
       </div>
 
-      <div className="flex flex-row justify-end items-center w-full">
+      <footer className="flex flex-row justify-end items-center w-full">
         <button
           type="submit"
           className="bg-purple-700 hover:bg-purple-900 text-gray-950 hover:text-gray-50 transform transition-all duration-300 ease-in-out z-10 text-sm shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
         >
           Schedule
         </button>
-      </div>
+      </footer>
     </form>
   );
 }
