@@ -6,17 +6,17 @@ import DailyList from "@/components/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
+// import { useStore } from "@/store/storeContext";
 
 const Home = () => {
-  const todayFormatted = dayjs();
-
-  const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments(
-    dayjs(todayFormatted).format('DD/MM/YYYY')
-  );
+  // const { scheduleStore } = useStore();
+  const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
+    // scheduleStore.deleteStore();
   };
+
 
   return (
     <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-3 relative">
@@ -31,7 +31,7 @@ const Home = () => {
             <p className="text-xs font-normal text-gray-300">Here you can see all clients and services scheduled for today.</p>
           </div>
           <div className="flex flex-col justify-center items-center md:w-96">
-            <DateButton date={selectedDate.format('DD-MM-YYYY')} setDate={(date) => setSelectedDate(dayjs(date, 'DD/MM/YYYY'))} />
+            <DateButton date={selectedDate} setDate={(date) => setSelectedDate(dayjs(date))} />
           </div>
         </div>
       </header>

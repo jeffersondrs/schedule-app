@@ -1,9 +1,11 @@
+import { Dayjs } from "dayjs";
+
 export interface ScheduleProps {
   id: string;
   scheduleTime: string;
   scheduleDescription: string;
   userSchedule: string;
-  scheduleDate: string;
+  scheduleDate: Dayjs;
   phoneScheduleUser: string;
   createdAt?: string;
   updatedAt?: string;
@@ -19,7 +21,7 @@ export interface FormState {
   phone: string;
   scheduleDescription: string;
   scheduleTime: string;
-  scheduleDate: string;
+  scheduleDate: Dayjs;
 }
 
 export interface FormProps {

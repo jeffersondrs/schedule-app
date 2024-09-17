@@ -1,3 +1,4 @@
+import dayjs, { Dayjs } from "dayjs";
 import { ActionType, FormState, ScheduleProps } from "./types";
 
 export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
@@ -14,10 +15,17 @@ export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
 
 export const filterSchedulesByDayAndPeriod = (
   data: ScheduleProps[],
-  day: string
-): { morning: ScheduleProps[], afternoon: ScheduleProps[], evening: ScheduleProps[] } => {
-
-  const filteredData = data.filter((schedule) => schedule.scheduleDate === day);
+  day: Dayjs
+): {
+  morning: ScheduleProps[];
+  afternoon: ScheduleProps[];
+  evening: ScheduleProps[];
+} => {
+  const filteredData = data.filter((schedule) => {
+    const scheduleDate = dayjs(schedule.scheduleDate).format("DD/MM/YYYY");
+    const filterDate = dayjs(day).format("DD/MM/YYYY");
+    return scheduleDate === filterDate;
+  });
 
   const morning = filteredData.filter((schedule) => {
     const hour = parseInt(schedule.scheduleTime.split(":")[0], 10);

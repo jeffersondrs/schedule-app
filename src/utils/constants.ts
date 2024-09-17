@@ -29,5 +29,5 @@ export const initialState: FormState = {
   phone: "",
   scheduleDescription: "",
   scheduleTime: "",
-  scheduleDate: dayjs().format('DD/MM/YYYY'),
+  scheduleDate: dayjs(),
 };

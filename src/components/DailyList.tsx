@@ -44,7 +44,7 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
         </div>
 
       </header>
-      {dailyList.length > 1 && (<main className={`transition-all duration-500 ease-in-out w-full px-5 ${isExpanded ? 'max-h-96 overflow-y-auto my-5' : 'max-h-0 overflow-hidden md:max-h-full'}`}>
+     <main className={`transition-all duration-500 ease-in-out w-full px-5 ${isExpanded ? 'max-h-96 overflow-y-auto my-5' : ''}`}>
         {dailyList.map((schedule) => (
           <div key={schedule.id} className="flex flex-col justify-center items-start border-b border-gray-primary p-4 md:flex-row md:gap-3 last:border-0">
             <div className="flex flex-row gap-3 justify-between md:flex-row md:w-96">
@@ -59,7 +59,7 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
             </div>
           </div>
         ))}
-      </main>)}
+      </main>
     </div>
   )
 }

@@ -6,8 +6,8 @@ import { ScheduleProps } from "@/utils/types";
 import { filterSchedulesByDayAndPeriod } from "@/utils/functions";
 import { useStore } from '@/store/storeContext';
 
-const useFilteredAppointments = (initialDate: string) => {
-  const [selectedDate, setSelectedDate] = useState(dayjs(initialDate) as Dayjs);
+const useFilteredAppointments = () => {
+  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
   const [filteredAppointments, setFilteredAppointments] = useState<{
     morning: ScheduleProps[];
     afternoon: ScheduleProps[];
@@ -19,12 +19,10 @@ const useFilteredAppointments = (initialDate: string) => {
   });
 
   const { scheduleStore } = useStore();
-
+  
   useEffect(() => {
-    const formattedDate = selectedDate.format('DD/MM/YYYY');
-    const filtered = filterSchedulesByDayAndPeriod(scheduleStore.schedules, formattedDate);
+    const filtered = filterSchedulesByDayAndPeriod(scheduleStore.schedules, selectedDate);
     setFilteredAppointments(filtered);
-
   }, [selectedDate, scheduleStore.schedules]);
 
   return {

@@ -12,6 +12,7 @@ import { initialState } from "@/utils/constants";
 import { reducer } from "@/utils/functions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import dayjs from "dayjs";
 
 export default function Form() {
 
@@ -39,7 +40,7 @@ export default function Form() {
       phoneScheduleUser: phone,
       scheduleDescription,
       scheduleTime,
-      scheduleDate: scheduleDate,
+      scheduleDate: dayjs(scheduleDate),
     };
 
     if (!name || !phone || !scheduleDescription || !scheduleTime || !scheduleDate) {

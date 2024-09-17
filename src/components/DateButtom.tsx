@@ -8,12 +8,11 @@ import CalendarUi from "./CalendarUi";
 import { IoClose } from "react-icons/io5";
 
 type DateButtonProps = {
-  date: string;
-  setDate: (date: string) => void;
+  date: Dayjs;
+  setDate: (date: Dayjs) => void;
 };
 
-export default function DateButton({ date, setDate }: DateButtonProps) {
-  const [inputDate, setInputDate] = useState(date);
+export default function DateButton({ setDate }: DateButtonProps) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
 
@@ -21,17 +20,10 @@ export default function DateButton({ date, setDate }: DateButtonProps) {
     setShowCalendar((prev) => !prev);
   };
 
-  const formatDate = (date: Dayjs) => {
-    return date.format('DD/MM/YYYY');
-  };
-
   const handleDateChange = (newDate: Dayjs) => {
-    if (newDate) {
-      setSelectedDate(newDate);
-      setInputDate(formatDate(newDate));
-      setShowCalendar(false);
-      setDate(formatDate(newDate));
-    }
+    setSelectedDate(newDate);
+    setDate(newDate);
+    setShowCalendar(false);
   };
 
   return (
@@ -43,7 +35,7 @@ export default function DateButton({ date, setDate }: DateButtonProps) {
         <span className="w-[1px] h-5 bg-gray-primary mr-2"></span>
         <div className="flex flex-row justify-center items-center w-full">
           {
-            inputDate ? (
+            selectedDate ? (
               <button
                 className="w-full h-10 bg-primary text-gray-300 rounded-md text-start text-xs"
                 onClick={(e) => {
@@ -51,7 +43,7 @@ export default function DateButton({ date, setDate }: DateButtonProps) {
                   toggleCalendar();
                 }}
               >
-                {inputDate}
+                {selectedDate.format('DD/MM/YYYY')}
               </button>
             ) : (
               <button

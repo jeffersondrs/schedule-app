@@ -1,10 +1,11 @@
-// stores/scheduleStore.ts
+import dayjs, {Dayjs} from "dayjs";
 import { makeAutoObservable } from "mobx";
 import { ScheduleProps } from "@/utils/types";
 import { v4 as uuidv4 } from "uuid";
 
 class ScheduleStore {
   schedules: ScheduleProps[] = [];
+  today: Dayjs = dayjs();
 
   constructor() {
     makeAutoObservable(this);
@@ -23,6 +24,10 @@ class ScheduleStore {
     };
     this.schedules.push(newSchedule);
     this.saveSchedules();
+  }
+
+  choiceDate(date: Dayjs) {
+    this.today = date;
   }
 
   updateSchedule(id: string, updatedSchedule: Partial<ScheduleProps>) {
