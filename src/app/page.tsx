@@ -11,7 +11,7 @@ import { observer } from "mobx-react-lite";
 
 const Home = () => {
   // const { scheduleStore } = useStore();
-  const { selectedDate, setSelectedDate, filteredAppointments } = useFilteredAppointments();
+  const { setSelectedDate, filteredAppointments } = useFilteredAppointments();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -31,7 +31,7 @@ const Home = () => {
             <p className="text-xs font-normal text-gray-300">Here you can see all clients and services scheduled for today.</p>
           </div>
           <div className="flex flex-col justify-center items-center md:w-96">
-            <DateButton date={selectedDate} setDate={(date) => setSelectedDate(dayjs(date))} />
+            <DateButton setDate={(date) => setSelectedDate(dayjs(date))} />
           </div>
         </div>
       </header>
