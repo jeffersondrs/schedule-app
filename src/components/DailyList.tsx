@@ -5,16 +5,27 @@ import { IoSunny, IoPartlySunnySharp } from "react-icons/io5";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { DailyListProps } from "../utils/types";
 import { FaChevronDown } from "react-icons/fa";
+import { useStore } from "@/store/storeContext";
+import Modal from "./Modal";
+import { observer } from "mobx-react-lite";
 
-export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
+
+const DailyList =({ periodOfDay, dailyList }: DailyListProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const { scheduleStore } = useStore();
+
+  const handleRemoveSchedule = () => {
+    setIsModalOpen(!isModalOpen);
+  }
+
   return (
-    <div className="flex flex-col justify-center items-center bg-primary rounded-xl py-2 w-full">
+    <div className="flex flex-col justify-center items-center bg-primary rounded-xl py-2 w-full max-w-4xl">
       <header className={`flex flex-row justify-center items-center w-full  ${dailyList.length && isExpanded ? 'border-b md:border-b' : ''
         } border-gray-primary px-3`}>
         <div className="flex flex-row justify-center items-center gap-2 p-2">
@@ -44,7 +55,7 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
         </div>
 
       </header>
-     <main className={`transition-all duration-500 ease-in-out w-full px-5 ${isExpanded ? 'max-h-96 overflow-y-auto my-5' : ''}`}>
+      <main className={`transition-all duration-500 ease-in-out w-full px-5 ${isExpanded ? 'max-h-96 overflow-y-auto my-5' : ''}`}>
         {dailyList.map((schedule) => (
           <div key={schedule.id} className="flex flex-col justify-center items-start border-b border-gray-primary p-4 md:flex-row md:gap-3 last:border-0">
             <div className="flex flex-row gap-3 justify-between md:flex-row md:w-96">
@@ -55,11 +66,29 @@ export default function DailyList({ periodOfDay, dailyList }: DailyListProps) {
               <p className="tracking-wider text-xs font-normal text-gray-400">{schedule.scheduleDescription}</p>
             </div>
             <div className="flex flex-row justify-end items-center w-full">
-              <button className="text-xs font-normal text-gray-600">Remove schedule</button>
+              <button className="text-xs font-normal text-gray-600"
+                onClick={handleRemoveSchedule}
+              >Remove schedule</button>
             </div>
+            {isModalOpen && (
+              <Modal isOpen={isModalOpen} isClose={handleRemoveSchedule}>
+                <div className="flex flex-col justify-center items-center gap-3">
+                  <p className="text-lg font-bold text-gray-200">Are you sure you want to remove this schedule?</p>
+                  <div className="flex flex-row justify-center items-center gap-3">
+                    <button className="text-sm font-bold text-gray-200" onClick={handleRemoveSchedule}>Cancel</button>
+                    <button className="text-sm font-bold text-gray-200 bg-red-400 rounded-md" onClick={() => {
+                      scheduleStore.removeSchedule(schedule.id);
+                      handleRemoveSchedule();
+                    }}>Confirm</button>
+                  </div>
+                </div>
+              </Modal>
+            )}
           </div>
         ))}
       </main>
     </div>
   )
 }
+
+export default observer(DailyList);

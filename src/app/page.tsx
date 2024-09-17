@@ -6,6 +6,7 @@ import DailyList from "@/components/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";
+import { observer } from "mobx-react-lite";
 // import { useStore } from "@/store/storeContext";
 
 const Home = () => {
@@ -14,7 +15,6 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
-    // scheduleStore.deleteStore();
   };
 
 
@@ -43,11 +43,11 @@ const Home = () => {
       <Modal isOpen={isModalOpen} isClose={handleOpenModal}>
         <Form />
       </Modal>
-      <div className="bottom-0 right-0 fixed md:right-5 md:bottom-5">
+      <footer className="bottom-5 max-w-4xl w-full fixed flex flex-row justify-end">
         <Button title="Novo agendamento" onClick={handleOpenModal} />
-      </div>
+      </footer>
     </div>
   );
 };
 
-export default Home;
+export default observer(Home);

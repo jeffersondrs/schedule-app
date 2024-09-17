@@ -19,7 +19,6 @@ const useFilteredAppointments = () => {
   });
 
   const { scheduleStore } = useStore();
-  
   useEffect(() => {
     const filtered = filterSchedulesByDayAndPeriod(scheduleStore.schedules, selectedDate);
     setFilteredAppointments(filtered);
