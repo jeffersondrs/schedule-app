@@ -65,3 +65,13 @@ export function reducer(state: FormState, action: ActionType): FormState {
     [action.field]: action.value,
   };
 }
+
+export const getTimeRangeForPeriod = (periodOfDay: "Morning" | "Afternoon" | "Evening") => {
+  const timeMap = {
+    Morning: "9h-12h",
+    Afternoon: "13h-18h",
+    Evening: "19h-21h",
+  };
+
+  return timeMap[periodOfDay];
+};

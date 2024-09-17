@@ -24,6 +24,22 @@ export interface FormState {
   scheduleDate: Dayjs;
 }
 
+export interface TimePickerDropdownProps {
+  isOpened: boolean;
+  onSelectTime: (time: string) => void;
+}
+
+export interface TimePickerButtonProps {
+  title: string;
+  isOpened: boolean;
+  onToggle: () => void;
+}
+
+export interface BasicTimePickerProps {
+  title: string;
+  setTime: (time: string) => void;
+}
+
 export interface FormProps {
   onSubmit: (data: ScheduleProps) => void;
 }
@@ -35,12 +51,25 @@ export type ActionType =
   | { field: "scheduleTime"; value: string }
   | { field: "scheduleDate"; value: string };
 
-export interface DailyHeaderProps {
-  periodOfDay: string;
-  onToggleShowScheduleList: () => void;
-  isShowScheduleList: boolean;
-}
-
 export interface DailyContentList extends Pick<DailyListProps, "dailyList"> {
   isExpanded: boolean;
 }
+
+export interface DailyHeaderProps extends Pick<DailyListProps, "periodOfDay"> {
+  toggleExpand: () => void;
+  isExpanded: boolean;
+}
+
+export type ToggleIconProps = {
+  isOpen: boolean;
+  onClick: () => void;
+};
+
+export type DateDisplayButtonProps = {
+  selectedDate: Dayjs | null;
+  onClick: () => void;
+};
+
+export type DateButtonProps = {
+  setDate: (date: Dayjs) => void;
+};

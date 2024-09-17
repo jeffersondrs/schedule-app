@@ -2,7 +2,7 @@
 
 import React from "react";
 import { DateButton, Button, Modal, Form } from "@/components";
-import DailyList from "@/components/DailyList";
+import DailyList from "@/components/DailyList/DailyList";
 import { BsCalendarDateFill } from "react-icons/bs";
 import dayjs from 'dayjs';
 import useFilteredAppointments from "@/hooks/userFilteredAppointments";

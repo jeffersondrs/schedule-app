@@ -3,8 +3,8 @@
 import React, { useReducer } from "react";
 import { IoPerson } from "react-icons/io5";
 import { ScheduleProps, FormState } from "../utils/types";
-import DateButton from "./DateButtom";
-import BasicTimePicker from "./TimeButton";
+import DateButtonComponent from "./DateButton/DateButtomComponent";
+import BasicTimePicker from "./TimeButton/TimeButton";
 import InputPhone from "./InputPhone";
 import { formatPhoneNumber } from "@/utils/functions";
 import { useStore } from "@/store/storeContext";
@@ -122,7 +122,7 @@ export default function Form() {
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">
         <label htmlFor="scheduleDate" className="text-xs font-bold text-gray-200">Date</label>
-        <DateButton date={scheduleDate} setDate={(date) => handleChange("scheduleDate", date.toString())} />
+        <DateButtonComponent setDate={(date) => handleChange("scheduleDate", date.toString())} />
       </div>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">
