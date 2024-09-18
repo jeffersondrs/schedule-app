@@ -1,10 +1,10 @@
-import { DailyHeaderProps } from "@/utils/types";
-import React from "react";
-import { BsFillMoonStarsFill } from "react-icons/bs";
-import { IoSunny, IoPartlySunnySharp } from "react-icons/io5";
-import { getTimeRangeForPeriod } from "@/utils/functions";
+import { DailyHeaderProps } from '@/utils/types';
+import React from 'react';
+import { BsFillMoonStarsFill } from 'react-icons/bs';
+import { IoSunny, IoPartlySunnySharp } from 'react-icons/io5';
+import { getTimeRangeForPeriod } from '@/utils/functions';
 
-const getIconForPeriod = (periodOfDay: "Morning" | "Afternoon" | "Evening") => {
+const getIconForPeriod = (periodOfDay: 'Morning' | 'Afternoon' | 'Evening') => {
   const iconMap = {
     Morning: <IoSunny className="w-4 h-4 text-blue-400" />,
     Afternoon: <IoPartlySunnySharp className="w-5 h-5 text-orange-400" />,
@@ -29,7 +29,6 @@ const DailyHeader = ({ periodOfDay }: DailyHeaderProps) => {
             {getTimeRangeForPeriod(periodOfDay)}
           </p>
         </div>
-
       </div>
     </header>
   );

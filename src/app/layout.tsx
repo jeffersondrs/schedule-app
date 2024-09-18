@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 import { StoreProvider } from '@/store/storeContext';
 
@@ -7,11 +7,11 @@ const poppins = Poppins({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
-  title: "Schedule-App",
-  description: "A simple schedule app",
+  title: 'Schedule-App',
+  description: 'A simple schedule app',
 };
 
 export default function RootLayout({
@@ -19,7 +19,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body
@@ -27,9 +26,7 @@ export default function RootLayout({
           ${poppins.className}
           antialiased`}
       >
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

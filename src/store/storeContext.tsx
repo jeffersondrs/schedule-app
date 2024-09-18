@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { createContext, useContext } from "react";
-import scheduleStore from "./appointmentStore";
+import React, { createContext, useContext } from 'react';
+import scheduleStore from './appointmentStore';
 
 interface Store {
   scheduleStore: typeof scheduleStore;
@@ -13,8 +13,12 @@ const store: Store = {
 
 const StoreContext = createContext(store);
 
-export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;
+export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return (
+    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
+  );
 };
 
 export const useStore = () => {

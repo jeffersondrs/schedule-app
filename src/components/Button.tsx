@@ -1,7 +1,5 @@
-import React from "react";
-import {
-  BsPlus
-} from "react-icons/bs";
+import React from 'react';
+import { BsPlus } from 'react-icons/bs';
 
 interface ButtonProps {
   title?: string;
@@ -15,7 +13,8 @@ export default function Button({ title, onClick }: ButtonProps) {
       transition-all duration-300 ease-in-out text-sm
       shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
       onClick={onClick}
-    >{title ? title : <BsPlus className="w-5 h-5" />}
+    >
+      {title ? title : <BsPlus className="w-5 h-5" />}
     </button>
   );
 }

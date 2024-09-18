@@ -1,11 +1,12 @@
-import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { hours } from "@/utils/constants";
-import { TimePickerDropdownProps } from "@/utils/types";
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { hours } from '@/utils/constants';
+import { TimePickerDropdownProps } from '@/utils/types';
 
-
-
-const TimePickerDropdown = ({ isOpened, onSelectTime }: TimePickerDropdownProps) => (
+const TimePickerDropdown = ({
+  isOpened,
+  onSelectTime,
+}: TimePickerDropdownProps) => (
   <AnimatePresence>
     {isOpened && (
       <motion.div

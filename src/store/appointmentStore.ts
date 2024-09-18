@@ -1,7 +1,7 @@
-import dayjs, {Dayjs} from "dayjs";
-import { makeAutoObservable } from "mobx";
-import { ScheduleProps } from "@/utils/types";
-import { v4 as uuidv4 } from "uuid";
+import dayjs, { Dayjs } from 'dayjs';
+import { makeAutoObservable } from 'mobx';
+import { ScheduleProps } from '@/utils/types';
+import { v4 as uuidv4 } from 'uuid';
 
 class ScheduleStore {
   schedules: ScheduleProps[] = [];
@@ -15,19 +15,16 @@ class ScheduleStore {
     }
   }
 
-  addSchedule(schedule: Omit<ScheduleProps, "id" | "createdAt" | "updatedAt">) {
+  addSchedule(schedule: Omit<ScheduleProps, 'id' | 'createdAt' | 'updatedAt'>) {
     const newSchedule: ScheduleProps = {
       ...schedule,
       id: uuidv4(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      createdAt: dayjs().toISOString(),
+      updatedAt: dayjs().toISOString(),
     };
     this.schedules.push(newSchedule);
     this.saveSchedules();
-  }
-
-  choiceDate(date: Dayjs) {
-    this.today = date;
+    this.loadSchedules();
   }
 
   updateSchedule(id: string, updatedSchedule: Partial<ScheduleProps>) {
@@ -53,13 +50,13 @@ class ScheduleStore {
 
   saveSchedules() {
     if (typeof window !== 'undefined') {
-      localStorage.setItem("schedules", JSON.stringify(this.schedules));
+      localStorage.setItem('schedules', JSON.stringify(this.schedules));
     }
   }
 
   loadSchedules() {
     if (typeof window !== 'undefined') {
-      const schedules = localStorage.getItem("schedules");
+      const schedules = localStorage.getItem('schedules');
       if (schedules) {
         this.schedules = JSON.parse(schedules);
       }

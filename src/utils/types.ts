@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs';
 
 export interface ScheduleProps {
   id: string;
@@ -12,7 +12,7 @@ export interface ScheduleProps {
 }
 
 export interface DailyListProps {
-  periodOfDay: "Morning" | "Afternoon" | "Evening";
+  periodOfDay: 'Morning' | 'Afternoon' | 'Evening';
   dailyList: ScheduleProps[];
 }
 
@@ -45,13 +45,13 @@ export interface FormProps {
 }
 
 export type ActionType =
-  | { field: "name"; value: string }
-  | { field: "phone"; value: string }
-  | { field: "scheduleDescription"; value: string }
-  | { field: "scheduleTime"; value: string }
-  | { field: "scheduleDate"; value: string };
+  | { field: 'name'; value: string }
+  | { field: 'phone'; value: string }
+  | { field: 'scheduleDescription'; value: string }
+  | { field: 'scheduleTime'; value: string }
+  | { field: 'scheduleDate'; value: string };
 
-export interface DailyContentList extends Pick<DailyListProps, "dailyList"> {}
+export interface DailyContentList extends Pick<DailyListProps, 'dailyList'> {}
 
 export type DailyHeaderProps = Omit<DailyListProps, 'dailyList'>;
 

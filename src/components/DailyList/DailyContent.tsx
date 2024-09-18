@@ -1,15 +1,19 @@
-import React from "react";
-import { DailyContentList } from "../../utils/types";
-import { useStore } from "@/store/storeContext";
-import ScheduleRow from "./ScheduleContent/ScheduleRow";
-import RemoveModal from "./ScheduleContent/RemoveModal";
+import React from 'react';
+import { DailyContentList } from '../../utils/types';
+import { useStore } from '@/store/storeContext';
+import ScheduleRow from './ScheduleContent/ScheduleRow';
+import RemoveModal from './ScheduleContent/RemoveModal';
 
 interface DailyContentProps extends DailyContentList {
   isModalOpen: boolean;
   handleRemoveSchedule: () => void;
 }
 
-const DailyContent = ({ dailyList, isModalOpen, handleRemoveSchedule }: DailyContentProps) => {
+const DailyContent = ({
+  dailyList,
+  isModalOpen,
+  handleRemoveSchedule,
+}: DailyContentProps) => {
   const { scheduleStore } = useStore();
 
   const removeSchedule = (scheduleId: string) => {

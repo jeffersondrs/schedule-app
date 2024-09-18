@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { IoMdClock } from "react-icons/io";
-import TimePickerButton from "./TimePickerButton";
-import TimePickerDropdown from "./TimePickerDropdown";
-import { BasicTimePickerProps } from "@/utils/types";
+import React, { useState } from 'react';
+import { IoMdClock } from 'react-icons/io';
+import TimePickerButton from './TimePickerButton';
+import TimePickerDropdown from './TimePickerDropdown';
+import { BasicTimePickerProps } from '@/utils/types';
 
-export default function BasicTimePicker({ title, setTime }: BasicTimePickerProps) {
+export default function BasicTimePicker({
+  title,
+  setTime,
+}: BasicTimePickerProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   const handleIsOpened = () => {
@@ -24,7 +27,11 @@ export default function BasicTimePicker({ title, setTime }: BasicTimePickerProps
         </div>
         <span className="w-[1px] h-5 bg-gray-primary mr-2"></span>
 
-        <TimePickerButton title={title} isOpened={isOpened} onToggle={handleIsOpened} />
+        <TimePickerButton
+          title={title}
+          isOpened={isOpened}
+          onToggle={handleIsOpened}
+        />
 
         <TimePickerDropdown isOpened={isOpened} onSelectTime={handleTime} />
       </div>

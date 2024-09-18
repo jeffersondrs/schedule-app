@@ -8,9 +8,13 @@ type CalendarUiProps = {
   handleDateChange: (newDate: Dayjs) => void;
 };
 
-export default function CalendarUi({ selectedDate, handleDateChange }: CalendarUiProps) {
+export default function CalendarUi({
+  selectedDate,
+  handleDateChange,
+}: CalendarUiProps) {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
       localeText={{
         year: 'Ano',
         month: 'Mês',
@@ -25,7 +29,7 @@ export default function CalendarUi({ selectedDate, handleDateChange }: CalendarU
             sx: {
               color: '#d1d5db',
             },
-          }
+          },
         }}
         sx={{
           backgroundColor: '#030712',

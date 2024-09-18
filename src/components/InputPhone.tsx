@@ -1,5 +1,5 @@
-import React from "react";
-import { BsTelephoneFill } from "react-icons/bs";
+import React from 'react';
+import { BsTelephoneFill } from 'react-icons/bs';
 
 interface InputPhoneProps {
   phone: string;
@@ -7,7 +7,6 @@ interface InputPhoneProps {
 }
 
 export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
-
   return (
     <>
       <label htmlFor="phone" className="text-xs font-bold text-gray-200">

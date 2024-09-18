@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { BsCalendarDateFill } from "react-icons/bs";
+import React, { useState } from 'react';
+import { BsCalendarDateFill } from 'react-icons/bs';
 import dayjs, { Dayjs } from 'dayjs';
-import DateDisplayButton from "./DateDisplayButton";
-import ToggleIcon from "./ToggleIcon";
-import CalendarModal from "./CalendarModal";
-import { DateButtonProps } from "@/utils/types";
+import DateDisplayButton from './DateDisplayButton';
+import ToggleIcon from './ToggleIcon';
+import CalendarModal from './CalendarModal';
+import { DateButtonProps } from '@/utils/types';
 
 export default function DateButtonComponent({ setDate }: DateButtonProps) {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -29,7 +29,10 @@ export default function DateButtonComponent({ setDate }: DateButtonProps) {
           <BsCalendarDateFill className="w-5 h-5 text-purple-800" />
         </div>
         <span className="w-[1px] h-5 bg-gray-primary mr-2"></span>
-        <DateDisplayButton selectedDate={selectedDate} onClick={toggleCalendar} />
+        <DateDisplayButton
+          selectedDate={selectedDate}
+          onClick={toggleCalendar}
+        />
         <ToggleIcon isOpen={showCalendar} onClick={toggleCalendar} />
       </div>
       {showCalendar && (
