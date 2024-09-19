@@ -13,7 +13,7 @@ export default function Modal({ children, isOpen, isClose }: ModalProps) {
   return (
     <>
       {isOpen && (
-        <div className="fixed px-6 pt-20 pb-10 top-0 left-0 w-full h-full bg-black bg-opacity-10 z-40 flex justify-center items-center overflow-auto backdrop-blur-sm">
+        <div className="fixed px-6 pt-20 pb-10 top-0 left-0 w-full h-full bg-black bg-opacity-10 z-40 flex justify-center items-center overflow-hidden backdrop-blur-sm">
           <div className="bg-primary pt-12 pb-5 rounded-md w-full relative px-5 md:max-w-lg">
             <button
               onClick={isClose}

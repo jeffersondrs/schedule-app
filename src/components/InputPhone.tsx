@@ -3,10 +3,10 @@ import { BsTelephoneFill } from 'react-icons/bs';
 
 interface InputPhoneProps {
   phone: string;
-  setPhone: (phone: string) => void;
+  handlePhoneChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
+export default function InputPhone({ phone, handlePhoneChange }: InputPhoneProps) {
   return (
     <>
       <label htmlFor="phone" className="text-xs font-bold text-gray-200">
@@ -17,11 +17,12 @@ export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
         <span className="w-[1px] h-5 bg-gray-primary mx-2"></span>
         <input
           type="text"
-          id="phone"
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="(00) 00000-0000"
           value={phone}
+          onChange={handlePhoneChange}
+          maxLength={15}
+          placeholder="(00) 00000-0000"
           className="w-full h-full bg-primary text-gray-200 p-2 rounded-r-md focus:bg-gray-700 text-xs"
+
         />
       </div>
     </>

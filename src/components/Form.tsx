@@ -43,6 +43,20 @@ export default function Form() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!name || !phone || !scheduleDescription || !scheduleTime) {
+      toast.error('Please fill in all fields', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     scheduleStore.addSchedule({
       scheduleDate: selectedDate,
       scheduleTime,
@@ -50,12 +64,54 @@ export default function Form() {
       userSchedule: name,
       phoneScheduleUser: phone,
     });
+
+    toast.success('Schedule added successfully', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
     setName('');
     setPhone('');
     setScheduleDescription('');
     setScheduleTime('');
     setSelectedDate(dayjs());
   };
+
+  const formatPhone = (phone: string): string => {
+    // Remove todos os caracteres que não são números
+    const cleaned = phone.replace(/\D/g, '');
+
+    // Limita a entrada a 11 dígitos
+    const limited = cleaned.slice(0, 11);
+
+    // Formata o telefone
+    const match = limited.match(/^(\d{2})(\d{5})(\d{4})$/);
+    if (match) {
+      return `(${match[1]}) ${match[2]}-${match[3]}`;
+    }
+
+    // Formata parcialmente enquanto o usuário digita
+    if (limited.length > 6) {
+      return `(${limited.slice(0, 2)}) ${limited.slice(2, 7)}-${limited.slice(7)}`;
+    } else if (limited.length > 2) {
+      return `(${limited.slice(0, 2)}) ${limited.slice(2)}`;
+    } else if (limited.length > 0) {
+      return `(${limited}`;
+    }
+
+    return limited;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedPhone = formatPhone(e.target.value);
+    setPhone(formattedPhone);
+  };
+
 
   return (
     <form
@@ -99,7 +155,7 @@ export default function Form() {
       <div className="flex flex-col justify-center items-start gap-1 w-full">
         <InputPhone
           phone={phone}
-          setPhone={(phone) => handleChange('phone', phone)}
+          handlePhoneChange={handlePhoneChange}
         />
       </div>
 
