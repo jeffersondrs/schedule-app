@@ -7,14 +7,20 @@ export interface ScheduleProps {
   userSchedule: string;
   scheduleDate: Dayjs;
   phoneScheduleUser: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: Dayjs;
+  updatedAt?: Dayjs;
 }
 
-export interface DailyListProps {
-  periodOfDay: 'Morning' | 'Afternoon' | 'Evening';
-  dailyList: ScheduleProps[];
-}
+export type SchedulePeriod = 'morning' | 'afternoon' | 'evening';
+
+export type SchedulesByDay = Record<
+  string,
+  {
+    morning: ScheduleProps[];
+    afternoon: ScheduleProps[];
+    evening: ScheduleProps[];
+  }
+>;
 
 export interface FormState {
   name: string;
@@ -49,11 +55,10 @@ export type ActionType =
   | { field: 'phone'; value: string }
   | { field: 'scheduleDescription'; value: string }
   | { field: 'scheduleTime'; value: string }
-  | { field: 'scheduleDate'; value: string };
+  | { field: 'scheduleDate'; value: Dayjs | string };
+export interface DailyContentList extends Pick<SchedulesByDay, 'dailyList'> {}
 
-export interface DailyContentList extends Pick<DailyListProps, 'dailyList'> {}
-
-export type DailyHeaderProps = Omit<DailyListProps, 'dailyList'>;
+export type DailyHeaderProps = Omit<SchedulesByDay, 'dailyList'>;
 
 export type ToggleIconProps = {
   isOpen: boolean;

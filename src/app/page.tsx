@@ -1,18 +1,23 @@
 'use client';
 
 import React from 'react';
-import { DateButton, Button, Modal, Form } from '@/components';
-import DailyList from '@/components/DailyList/DailyList';
+import { DateButtonComponent, Button, Modal, Form } from '@/components';
+import { ScheduleOverview } from '@/components/index';
 import { BsCalendarDateFill } from 'react-icons/bs';
-import dayjs from 'dayjs';
-import useFilteredAppointments from '@/hooks/userFilteredAppointments';
-import { observer } from 'mobx-react-lite';
+import { Dayjs } from 'dayjs';
+import { useStore } from '@/store/storeContext';
 
-const Home = () => {
-  const { setSelectedDate, filteredAppointments } = useFilteredAppointments();
+export default function Home() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const { scheduleStore } = useStore();
+  const selectedDate = scheduleStore.selectedDay;
+
+  const handleDateChange = (newDate: Dayjs) => {
+    scheduleStore.setSelectedDay(newDate);
   };
 
   return (
@@ -32,23 +37,15 @@ const Home = () => {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center md:w-96">
-            <DateButton setDate={(date) => setSelectedDate(dayjs(date))} />
+            <DateButtonComponent
+              selectedDate={selectedDate}
+              onDateChange={handleDateChange}
+            />
           </div>
         </div>
       </header>
 
-      <DailyList
-        periodOfDay="Morning"
-        dailyList={filteredAppointments.morning}
-      />
-      <DailyList
-        periodOfDay="Afternoon"
-        dailyList={filteredAppointments.afternoon}
-      />
-      <DailyList
-        periodOfDay="Evening"
-        dailyList={filteredAppointments.evening}
-      />
+      <ScheduleOverview />
 
       <Modal isOpen={isModalOpen} isClose={handleOpenModal}>
         <Form />
@@ -58,6 +55,4 @@ const Home = () => {
       </footer>
     </div>
   );
-};
-
-export default observer(Home);
+}

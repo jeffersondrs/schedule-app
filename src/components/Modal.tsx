@@ -18,6 +18,8 @@ export default function Modal({ children, isOpen, isClose }: ModalProps) {
             <button
               onClick={isClose}
               className="text-white text-right w-5 h-5 absolute top-3 right-3"
+              title="Close"
+              type="button"
             >
               <IoClose className="w-5 h-5 text-white" />
             </button>

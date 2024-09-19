@@ -14,7 +14,12 @@ const RemoveModal = ({ isOpen, onClose, onConfirm }: RemoveModalProps) => (
         Are you sure you want to remove this schedule?
       </p>
       <div className="flex flex-row justify-center items-center gap-3">
-        <button className="text-sm font-bold text-gray-200" onClick={onClose}>
+        <button
+          className="text-sm font-bold text-gray-200"
+          onClick={onClose}
+          type="button"
+          title="Cancel"
+        >
           Cancel
         </button>
         <button
@@ -22,6 +27,8 @@ const RemoveModal = ({ isOpen, onClose, onConfirm }: RemoveModalProps) => (
           transition-all duration-200 ease-in-out
            rounded-md p-2"
           onClick={onConfirm}
+          type="button"
+          title="Confirm"
         >
           Confirm
         </button>

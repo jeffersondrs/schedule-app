@@ -1,81 +1,60 @@
 'use client';
 
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
 import { IoPerson } from 'react-icons/io5';
-import { ScheduleProps, FormState } from '../utils/types';
 import DateButtonComponent from './DateButton/DateButtomComponent';
 import BasicTimePicker from './TimeButton/TimeButton';
 import InputPhone from './InputPhone';
-import { formatPhoneNumber } from '@/utils/functions';
 import { useStore } from '@/store/storeContext';
-import { initialState } from '@/utils/constants';
-import { reducer } from '@/utils/functions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 export default function Form() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { name, phone, scheduleDescription, scheduleTime, scheduleDate } =
-    state;
   const { scheduleStore } = useStore();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [scheduleDescription, setScheduleDescription] = useState('');
+  const [scheduleTime, setScheduleTime] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
 
-  const notify = () =>
-    toast.success('Appointment scheduled successfully!', {
-      position: 'top-center',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const newSchedule: Omit<ScheduleProps, 'id' | 'createdAt' | 'updatedAt'> = {
-      userSchedule: name,
-      phoneScheduleUser: phone,
-      scheduleDescription,
-      scheduleTime,
-      scheduleDate: dayjs(scheduleDate),
-    };
-
-    if (
-      !name ||
-      !phone ||
-      !scheduleDescription ||
-      !scheduleTime ||
-      !scheduleDate
-    ) {
-      return toast.error('Please fill in all fields', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+  const handleChange = (field: string, value: string) => {
+    switch (field) {
+      case 'name':
+        setName(value);
+        break;
+      case 'phone':
+        setPhone(value);
+        break;
+      case 'scheduleDescription':
+        setScheduleDescription(value);
+        break;
+      case 'scheduleTime':
+        setScheduleTime(value);
+        break;
+      default:
+        break;
     }
-
-    notify();
-
-    scheduleStore.addSchedule(newSchedule);
-
-    dispatch({ field: 'name', value: '' });
-    dispatch({ field: 'phone', value: '' });
-    dispatch({ field: 'scheduleDescription', value: '' });
-    dispatch({ field: 'scheduleTime', value: '' });
-    dispatch({ field: 'scheduleDate', value: '' });
   };
 
-  const handleChange = (field: keyof FormState, value: string) => {
-    if (field === 'phone') {
-      value = formatPhoneNumber(value);
-    }
-    dispatch({ field, value });
+  const handleDateChange = (newDate: Dayjs) => {
+    setSelectedDate(newDate);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    scheduleStore.addSchedule({
+      scheduleDate: selectedDate,
+      scheduleTime,
+      scheduleDescription,
+      userSchedule: name,
+      phoneScheduleUser: phone,
+    });
+    setName('');
+    setPhone('');
+    setScheduleDescription('');
+    setScheduleTime('');
+    setSelectedDate(dayjs());
   };
 
   return (
@@ -149,7 +128,8 @@ export default function Form() {
           Date
         </label>
         <DateButtonComponent
-          setDate={(date) => handleChange('scheduleDate', date.toString())}
+          selectedDate={selectedDate}
+          onDateChange={handleDateChange}
         />
       </div>
 
@@ -170,6 +150,7 @@ export default function Form() {
         <button
           type="submit"
           className="bg-purple-700 hover:bg-purple-900 text-gray-950 hover:text-gray-50 transform transition-all duration-300 ease-in-out z-10 text-sm shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
+          title="Schedule"
         >
           Schedule
         </button>

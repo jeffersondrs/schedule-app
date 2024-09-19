@@ -15,6 +15,7 @@ const TimePickerButton = ({
         onToggle();
       }}
       id="scheduleTime"
+      type="button"
     >
       {title || 'Select time'}
     </button>
@@ -24,6 +25,8 @@ const TimePickerButton = ({
         onToggle();
       }}
       className="text-gray-300 cursor-pointer p-2"
+      type="button"
+      title="Toggle"
     >
       <FaAngleDown
         className={`w-5 h-5 text-gray-300 transition-transform ${isOpened ? 'rotate-180' : 'rotate-0'}`}

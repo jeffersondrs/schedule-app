@@ -24,6 +24,8 @@ const TimePickerDropdown = ({
               e.preventDefault();
               onSelectTime(hour);
             }}
+            type="button"
+            title={`Select ${hour}`}
           >
             {hour}
           </button>

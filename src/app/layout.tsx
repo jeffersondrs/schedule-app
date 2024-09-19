@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import { StoreProvider } from '@/store/storeContext';
+import dynamic from 'next/dynamic';
 
 const poppins = Poppins({
   weight: '400',
@@ -13,6 +14,13 @@ export const metadata: Metadata = {
   title: 'Schedule-App',
   description: 'A simple schedule app',
 };
+
+const DynamicContextProvider = dynamic(
+  () => import('@/store/storeContext').then((mod) => mod.StoreProvider),
+  {
+    ssr: false,
+  },
+);
 
 export default function RootLayout({
   children,
@@ -26,7 +34,9 @@ export default function RootLayout({
           ${poppins.className}
           antialiased`}
       >
-        <StoreProvider>{children}</StoreProvider>
+        <DynamicContextProvider>
+          <StoreProvider>{children}</StoreProvider>
+        </DynamicContextProvider>
       </body>
     </html>
   );

@@ -13,6 +13,8 @@ export default function Button({ title, onClick }: ButtonProps) {
       transition-all duration-300 ease-in-out text-sm
       shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
       onClick={onClick}
+      type="button"
+      title={title}
     >
       {title ? title : <BsPlus className="w-5 h-5" />}
     </button>

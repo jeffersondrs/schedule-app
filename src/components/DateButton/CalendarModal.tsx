@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoClose } from 'react-icons/io5';
 import { Dayjs } from 'dayjs';
-import CalendarUi from './CalendarUi';
+import { CalendarUi } from './CalendarUi';
 
 type CalendarModalProps = {
   selectedDate: Dayjs;
@@ -21,6 +21,8 @@ const CalendarModal = ({
         onClose();
       }}
       className="text-white text-right w-5 h-5 absolute top-3 right-3"
+      title="Close"
+      type="button"
     >
       <IoClose className="w-5 h-5 text-white" />
     </button>
