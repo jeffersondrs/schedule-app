@@ -82,37 +82,6 @@ export default function Form() {
     setSelectedDate(dayjs());
   };
 
-  const formatPhone = (phone: string): string => {
-    // Remove todos os caracteres que não são números
-    const cleaned = phone.replace(/\D/g, '');
-
-    // Limita a entrada a 11 dígitos
-    const limited = cleaned.slice(0, 11);
-
-    // Formata o telefone
-    const match = limited.match(/^(\d{2})(\d{5})(\d{4})$/);
-    if (match) {
-      return `(${match[1]}) ${match[2]}-${match[3]}`;
-    }
-
-    // Formata parcialmente enquanto o usuário digita
-    if (limited.length > 6) {
-      return `(${limited.slice(0, 2)}) ${limited.slice(2, 7)}-${limited.slice(7)}`;
-    } else if (limited.length > 2) {
-      return `(${limited.slice(0, 2)}) ${limited.slice(2)}`;
-    } else if (limited.length > 0) {
-      return `(${limited}`;
-    }
-
-    return limited;
-  };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formattedPhone = formatPhone(e.target.value);
-    setPhone(formattedPhone);
-  };
-
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -153,10 +122,7 @@ export default function Form() {
       </div>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <InputPhone
-          phone={phone}
-          handlePhoneChange={handlePhoneChange}
-        />
+        <InputPhone phone={phone} setPhone={setPhone} />
       </div>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">

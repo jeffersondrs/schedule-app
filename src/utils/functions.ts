@@ -12,14 +12,25 @@ export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
   });
 };
 
-export const formatPhoneNumber = (value: string) => {
-  const cleaned = value.replace(/\D/g, '');
+export const formatPhone = (phone: string): string => {
+  const cleaned = phone.replace(/\D/g, '');
 
-  const match = cleaned.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
+  const limited = cleaned.slice(0, 11);
+
+  const match = limited.match(/^(\d{2})(\d{5})(\d{4})$/);
   if (match) {
     return `(${match[1]}) ${match[2]}-${match[3]}`;
   }
-  return value;
+
+  if (limited.length > 6) {
+    return `(${limited.slice(0, 2)}) ${limited.slice(2, 7)}-${limited.slice(7)}`;
+  } else if (limited.length > 2) {
+    return `(${limited.slice(0, 2)}) ${limited.slice(2)}`;
+  } else if (limited.length > 0) {
+    return `(${limited}`;
+  }
+
+  return limited;
 };
 
 export function reducer(state: FormState, action: ActionType): FormState {

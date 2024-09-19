@@ -1,12 +1,18 @@
 import React from 'react';
 import { BsTelephoneFill } from 'react-icons/bs';
+import { formatPhone } from '@/utils/functions';
 
 interface InputPhoneProps {
   phone: string;
-  handlePhoneChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setPhone: (phone: string) => void;
 }
 
-export default function InputPhone({ phone, handlePhoneChange }: InputPhoneProps) {
+export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedPhone = formatPhone(event.target.value);
+    setPhone(formattedPhone);
+  };
+
   return (
     <>
       <label htmlFor="phone" className="text-xs font-bold text-gray-200">
@@ -22,7 +28,6 @@ export default function InputPhone({ phone, handlePhoneChange }: InputPhoneProps
           maxLength={15}
           placeholder="(00) 00000-0000"
           className="w-full h-full bg-primary text-gray-200 p-2 rounded-r-md focus:bg-gray-700 text-xs"
-
         />
       </div>
     </>
