@@ -1,6 +1,6 @@
 import Button from './Button';
 import DateButtonComponent from './DateButton/DateButtomComponent';
-import ScheduleOverview from './DailyList/DailyList';
+import ScheduleOverview from './Schedule/ScheduleOverview';
 import { CalendarUi } from './DateButton/CalendarUi';
 import Modal from './Modal';
 import TimeButton from './TimeButton/TimeButton';

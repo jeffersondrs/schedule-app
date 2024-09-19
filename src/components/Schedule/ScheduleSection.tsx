@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScheduleProps, SchedulePeriod } from '@/utils/types';
-import DailyHeader from './DailyHeader';
+import DailyHeader from './ScheduleHeader';
 import { observer } from 'mobx-react-lite';
 
 interface ScheduleSectionProps {
