@@ -14,7 +14,6 @@ export default function Home() {
   };
 
   const { scheduleStore } = useStore();
-  const selectedDate = scheduleStore.selectedDay;
 
   const handleDateChange = (newDate: Dayjs) => {
     scheduleStore.setSelectedDay(newDate);
@@ -38,7 +37,6 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-center items-center md:w-96">
             <DateButtonComponent
-              selectedDate={selectedDate}
               onDateChange={handleDateChange}
             />
           </div>
