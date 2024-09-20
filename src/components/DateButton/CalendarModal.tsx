@@ -14,7 +14,7 @@ const CalendarModal = ({
   handleDateChange,
   onClose,
 }: CalendarModalProps) => (
-  <div className="bg-primary transition-all duration-300 ease-in-out z-30 fixed px-6 pt-20 top-0 left-0 w-full h-full bg-opacity-50 flex justify-center items-center">
+  <div className="bg-primary transition-all duration-300 ease-in-out z-30 fixed px-6 pt-20 top-0 left-0 w-full h-full bg-opacity-50 overflow-hidden backdrop-blur-sm flex justify-center items-center">
     <button
       onClick={(e) => {
         e.preventDefault();

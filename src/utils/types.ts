@@ -56,7 +56,6 @@ export type ActionType =
   | { field: 'scheduleDescription'; value: string }
   | { field: 'scheduleTime'; value: string }
   | { field: 'scheduleDate'; value: Dayjs | string };
-export interface DailyContentList extends Pick<SchedulesByDay, 'dailyList'> {}
 
 export type DailyHeaderProps = Omit<SchedulesByDay, 'dailyList'>;
 

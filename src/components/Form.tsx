@@ -117,6 +117,7 @@ export default function Form() {
             value={name}
             onChange={(e) => handleChange('name', e.target.value)}
             className="w-full h-full bg-primary text-xs text-gray-200 p-2 rounded-r-md focus:bg-gray-700"
+            maxLength={14}
           />
         </div>
       </div>
@@ -137,7 +138,8 @@ export default function Form() {
               handleChange('scheduleDescription', e.target.value)
             }
             className="w-full h-24 bg-primary text-gray-200 rounded-md resize-none focus:bg-gray-700 p-3"
-            rows={5}
+            rows={3}
+            maxLength={100}
           />
         </div>
       </div>

@@ -13,13 +13,20 @@ const DailyHeader: React.FC<{ title: SchedulePeriod }> = observer(
     };
 
     return (
-      <header className="flex flex-row justify-between items-center w-full border-gray-primary px-3 border-b">
+      <header className="flex flex-row justify-between items-center w-full border-gray-primary px-3 border-b flex-wrap sm:flex-nowrap">
         <div className="flex flex-row items-center gap-2 p-2">
           {iconMap[title]}
           <p className="tracking-wider text-white font-bold text-base capitalize">
             {title}
           </p>
         </div>
+        <p className="text-base text-texting font-semibold text-end">
+          {title === 'morning'
+            ? '09:00 - 12:00'
+            : title === 'afternoon'
+              ? '13:00 - 18:00'
+              : '19:00 - 21:00'}
+        </p>
       </header>
     );
   },

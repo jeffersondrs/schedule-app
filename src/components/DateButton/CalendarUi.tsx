@@ -9,50 +9,52 @@ type CalendarUiProps = {
   handleDateChange: (newDate: Dayjs) => void;
 };
 
-export const CalendarUi = observer(({ selectedDate, handleDateChange }: CalendarUiProps) => {
-  return (
-    <LocalizationProvider
-      dateAdapter={AdapterDayjs}
-      localeText={{
-        year: 'Ano',
-        month: 'Mês',
-        day: 'Dia',
-      }}
-    >
-      <DateCalendar
-        value={selectedDate}
-        onChange={handleDateChange}
-        slotProps={{
-          switchViewButton: {
-            sx: {
+export const CalendarUi = observer(
+  ({ selectedDate, handleDateChange }: CalendarUiProps) => {
+    return (
+      <LocalizationProvider
+        dateAdapter={AdapterDayjs}
+        localeText={{
+          year: 'Ano',
+          month: 'Mês',
+          day: 'Dia',
+        }}
+      >
+        <DateCalendar
+          value={selectedDate}
+          onChange={handleDateChange}
+          slotProps={{
+            switchViewButton: {
+              sx: {
+                color: '#d1d5db',
+              },
+            },
+          }}
+          sx={{
+            backgroundColor: '#030712',
+            color: '#6b7280',
+            '.MuiPickersDay-root': {
+              color: '#6b7280',
+              '&.Mui-selected': {
+                backgroundColor: '#6b21a8',
+                color: '#d1d5db',
+              },
+              '&.Mui-selected:hover': {
+                backgroundColor: 'dark#6b7280',
+              },
+            },
+            '.MuiPickersCalendarHeader-root': {
+              color: '#6b7280',
+            },
+            '.MuiPickersCalendarHeader-label': {
               color: '#d1d5db',
             },
-          },
-        }}
-        sx={{
-          backgroundColor: '#030712',
-          color: '#6b7280',
-          '.MuiPickersDay-root': {
-            color: '#6b7280',
-            '&.Mui-selected': {
-              backgroundColor: '#6b21a8',
+            '.MuiPickersArrowSwitcher-root button': {
               color: '#d1d5db',
             },
-            '&.Mui-selected:hover': {
-              backgroundColor: 'dark#6b7280',
-            },
-          },
-          '.MuiPickersCalendarHeader-root': {
-            color: '#6b7280',
-          },
-          '.MuiPickersCalendarHeader-label': {
-            color: '#d1d5db',
-          },
-          '.MuiPickersArrowSwitcher-root button': {
-            color: '#d1d5db',
-          },
-        }}
-      />
-    </LocalizationProvider>
-  );
-});
+          }}
+        />
+      </LocalizationProvider>
+    );
+  },
+);

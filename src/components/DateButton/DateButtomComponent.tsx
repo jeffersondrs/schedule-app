@@ -5,16 +5,13 @@ import { BsCalendarDateFill } from 'react-icons/bs';
 import { DateDisplayButton } from './DateDisplayButton';
 import ToggleIcon from './ToggleIcon';
 import CalendarModal from './CalendarModal';
-import { useStore } from '@/store/storeContext';
 import dayjs, { Dayjs } from 'dayjs';
 
 interface DateButtonComponentProps {
-  selectedDate: Dayjs;
   onDateChange: (newDate: Dayjs) => void;
 }
 
 const DateButtonComponent: React.FC<DateButtonComponentProps> = ({
-  selectedDate,
   onDateChange,
 }) => {
   const [showCalendar, setShowCalendar] = useState(false);

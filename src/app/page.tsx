@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { DateButtonComponent, Button, Modal, Form } from '@/components';
 import { ScheduleOverview } from '@/components/index';
 import { BsCalendarDateFill } from 'react-icons/bs';
@@ -8,7 +8,7 @@ import { Dayjs } from 'dayjs';
 import { useStore } from '@/store/storeContext';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
   };

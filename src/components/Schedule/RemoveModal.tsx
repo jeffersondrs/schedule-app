@@ -9,8 +9,8 @@ interface RemoveModalProps {
 
 const RemoveModal = ({ isOpen, onClose, onConfirm }: RemoveModalProps) => (
   <Modal isOpen={isOpen} isClose={onClose}>
-    <div className="flex flex-col justify-center items-center gap-3">
-      <p className="text-lg font-bold text-gray-200">
+    <div className="flex flex-col justify-center items-center gap-3 p-5 max-w-lg">
+      <p className="text-lg font-bold text-gray-200 p-5">
         Are you sure you want to remove this schedule?
       </p>
       <div className="flex flex-row justify-center items-center gap-3">
