@@ -43,7 +43,7 @@ const OverViewModal = ({
           Schedule Details:
         </p>
         {selectedSchedule ? (
-          <div className="flex flex-col justify-center md:items-center w-full sm:w-80">
+          <div className="flex flex-col justify-center md:items-center w-full">
             <div className="flex flex-row gap-2 p-2 w-full flex-wrap">
               <p className="tracking-wider text-xs font-bold text-gray-200">
                 Time:
@@ -68,11 +68,11 @@ const OverViewModal = ({
                 {formatPhone(selectedSchedule.phoneScheduleUser)}
               </p>
             </div>
-            <div className="flex flex-col gap-2 p-2 w-full flex-wrap">
+            <div className="flex flex-col gap-2 p-2 w-full flex-wrap ">
               <p className="tracking-wider text-xs font-bold text-gray-200">
                 Description:
               </p>
-              <p className="tracking-wider text-xs font-bold text-texting break-words text-wrap w-full">
+              <p className="tracking-wider text-xs font-bold text-texting break-words text-wrap w-full max-w-52">
                 {selectedSchedule.scheduleDescription}
               </p>
             </div>
