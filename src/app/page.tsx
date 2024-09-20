@@ -36,9 +36,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center md:w-96">
-            <DateButtonComponent
-              onDateChange={handleDateChange}
-            />
+            <DateButtonComponent onDateChange={handleDateChange} />
           </div>
         </div>
       </header>

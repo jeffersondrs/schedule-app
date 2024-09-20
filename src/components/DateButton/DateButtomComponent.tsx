@@ -39,7 +39,7 @@ const DateButtonComponent: React.FC<DateButtonComponentProps> = ({
       {showCalendar && (
         <CalendarModal
           selectedDate={date}
-          handleDateChange={handleDateChange}
+          onDateChange={handleDateChange}
           onClose={() => setShowCalendar(false)}
         />
       )}

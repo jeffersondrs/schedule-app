@@ -2,12 +2,7 @@
 
 import React from 'react';
 import { IoClose } from 'react-icons/io5';
-
-type ModalProps = {
-  children: React.ReactNode;
-  isOpen: boolean;
-  isClose: () => void;
-};
+import { ModalProps } from '@/utils/types';
 
 export default function Modal({ children, isOpen, isClose }: ModalProps) {
   return (

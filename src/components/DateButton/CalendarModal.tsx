@@ -5,13 +5,13 @@ import { CalendarUi } from './CalendarUi';
 
 type CalendarModalProps = {
   selectedDate: Dayjs;
-  handleDateChange: (date: Dayjs) => void;
+  onDateChange: (date: Dayjs) => void;
   onClose: () => void;
 };
 
 const CalendarModal = ({
   selectedDate,
-  handleDateChange,
+  onDateChange,
   onClose,
 }: CalendarModalProps) => (
   <div className="bg-primary transition-all duration-300 ease-in-out z-30 fixed px-6 pt-20 top-0 left-0 w-full h-full bg-opacity-50 overflow-hidden backdrop-blur-sm flex justify-center items-center">
@@ -26,10 +26,7 @@ const CalendarModal = ({
     >
       <IoClose className="w-5 h-5 text-white" />
     </button>
-    <CalendarUi
-      selectedDate={selectedDate}
-      handleDateChange={handleDateChange}
-    />
+    <CalendarUi selectedDate={selectedDate} handleDateChange={onDateChange} />
   </div>
 );
 

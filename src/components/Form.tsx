@@ -1,86 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
 import { IoPerson } from 'react-icons/io5';
 import DateButtonComponent from './DateButton/DateButtomComponent';
 import BasicTimePicker from './TimeButton/TimeButton';
 import InputPhone from './InputPhone';
-import { useStore } from '@/store/storeContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import dayjs, { Dayjs } from 'dayjs';
+import useScheduleForm from '@/hooks/useScheduleForm';
 
 export default function Form() {
-  const { scheduleStore } = useStore();
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [scheduleDescription, setScheduleDescription] = useState('');
-  const [scheduleTime, setScheduleTime] = useState('');
-  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
-
-  const handleChange = (field: string, value: string) => {
-    switch (field) {
-      case 'name':
-        setName(value);
-        break;
-      case 'phone':
-        setPhone(value);
-        break;
-      case 'scheduleDescription':
-        setScheduleDescription(value);
-        break;
-      case 'scheduleTime':
-        setScheduleTime(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleDateChange = (newDate: Dayjs) => {
-    setSelectedDate(newDate);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!name || !phone || !scheduleDescription || !scheduleTime) {
-      toast.error('Please fill in all fields', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return;
-    }
-
-    scheduleStore.addSchedule({
-      scheduleDate: selectedDate,
-      scheduleTime,
-      scheduleDescription,
-      userSchedule: name,
-      phoneScheduleUser: phone,
-    });
-
-    toast.success('Schedule added successfully', {
-      position: 'top-center',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-    setName('');
-    setPhone('');
-    setScheduleDescription('');
-    setScheduleTime('');
-    setSelectedDate(dayjs());
-  };
+  const {
+    name,
+    phone,
+    scheduleDescription,
+    scheduleTime,
+    handleChange,
+    handleDateChange,
+    handleSubmit,
+    setPhone,
+  } = useScheduleForm();
 
   return (
     <form
@@ -134,7 +72,7 @@ export default function Form() {
           <textarea
             id="service"
             value={scheduleDescription}
-            placeholder='Describe the service'
+            placeholder="Describe the service"
             onChange={(e) =>
               handleChange('scheduleDescription', e.target.value)
             }
@@ -152,9 +90,7 @@ export default function Form() {
         >
           Date
         </label>
-        <DateButtonComponent
-          onDateChange={handleDateChange}
-        />
+        <DateButtonComponent onDateChange={handleDateChange} />
       </div>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">

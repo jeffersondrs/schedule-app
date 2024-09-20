@@ -11,6 +11,12 @@ export interface ScheduleProps {
   updatedAt?: Dayjs;
 }
 
+export type ModalProps = {
+  children: React.ReactNode;
+  isOpen: boolean;
+  isClose: () => void;
+};
+
 export type SchedulePeriod = 'morning' | 'afternoon' | 'evening';
 
 export type SchedulesByDay = Record<
@@ -22,12 +28,9 @@ export type SchedulesByDay = Record<
   }
 >;
 
-export interface FormState {
-  name: string;
+export interface InputPhoneProps {
   phone: string;
-  scheduleDescription: string;
-  scheduleTime: string;
-  scheduleDate: Dayjs;
+  setPhone: (phone: string) => void;
 }
 
 export interface TimePickerDropdownProps {
@@ -46,18 +49,10 @@ export interface BasicTimePickerProps {
   setTime: (time: string) => void;
 }
 
-export interface FormProps {
-  onSubmit: (data: ScheduleProps) => void;
+export interface ButtonProps {
+  title?: string;
+  onClick: () => void;
 }
-
-export type ActionType =
-  | { field: 'name'; value: string }
-  | { field: 'phone'; value: string }
-  | { field: 'scheduleDescription'; value: string }
-  | { field: 'scheduleTime'; value: string }
-  | { field: 'scheduleDate'; value: Dayjs | string };
-
-export type DailyHeaderProps = Omit<SchedulesByDay, 'dailyList'>;
 
 export type ToggleIconProps = {
   isOpen: boolean;
@@ -69,6 +64,9 @@ export type DateDisplayButtonProps = {
   onClick: () => void;
 };
 
-export type DateButtonProps = {
-  setDate: (date: Dayjs) => void;
-};
+export interface OverViewModalProps {
+  id: string;
+  isOpen: boolean;
+  onClose: () => void;
+  schedules: ScheduleProps[];
+}

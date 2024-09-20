@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Modal } from '@/components/';
-import { ScheduleProps } from '@/utils/types';
+import { useScheduleDetails } from '@/hooks/useScheduleDetails';
+import { OverViewModalProps } from '@/utils/types';
 import dayjs from 'dayjs';
 import { formatPhone } from '@/utils/functions';
-import scheduleStore from '@/store/appointmentStore';
-
-interface OverViewModalProps {
-  id: string;
-  isOpen: boolean;
-  onClose: () => void;
-  schedules: ScheduleProps[];
-}
 
 const OverViewModal = ({
   id,
@@ -18,23 +11,12 @@ const OverViewModal = ({
   onClose,
   schedules,
 }: OverViewModalProps) => {
-  const [selectedSchedule, setSelectedSchedule] =
-    useState<ScheduleProps | null>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      const schedule = schedules.find((schedule) => schedule.id === id);
-      setSelectedSchedule(schedule || null);
-    }
-  }, [id, isOpen, schedules]);
-
-  const handleConfirmRemove = () => {
-    if (selectedSchedule) {
-      scheduleStore.removeSchedule(selectedSchedule.id);
-      onClose();
-      setSelectedSchedule(null);
-    }
-  };
+  const { selectedSchedule, handleRemoveSchedule } = useScheduleDetails(
+    id,
+    schedules,
+    isOpen,
+    onClose,
+  );
 
   return (
     <Modal isOpen={isOpen} isClose={onClose}>
@@ -94,7 +76,7 @@ const OverViewModal = ({
               <button
                 className="text-xs text-red-500 hover:text-red-700 h-8 w-20"
                 type="button"
-                onClick={handleConfirmRemove}
+                onClick={handleRemoveSchedule}
               >
                 Remove
               </button>

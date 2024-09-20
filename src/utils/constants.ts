@@ -1,6 +1,3 @@
-import dayjs from 'dayjs';
-import { FormState } from './types';
-
 export const hours: string[] = [
   '09:00',
   '09:30',
@@ -23,11 +20,3 @@ export const hours: string[] = [
   '20:00',
   '20:30',
 ];
-
-export const initialState: FormState = {
-  name: '',
-  phone: '',
-  scheduleDescription: '',
-  scheduleTime: '',
-  scheduleDate: dayjs(),
-};

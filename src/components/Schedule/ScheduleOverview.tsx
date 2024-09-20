@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '@/store/storeContext';
-import { ScheduleProps } from '@/utils/types';
 import RemoveModal from './RemoveModal';
 import OverViewModal from './OverviewModal';
 import ScheduleSection from './ScheduleSection';
+import useScheduleModals from '@/hooks/useScheduleModals';
+import { ScheduleProps } from '@/utils/types';
 
 const ScheduleOverview: React.FC = observer(() => {
   const { scheduleStore } = useStore();
@@ -12,38 +13,16 @@ const ScheduleOverview: React.FC = observer(() => {
   const { morning, afternoon, evening } =
     scheduleStore.getSchedulesByDay(selectedDate);
 
-  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
-  const [isOverviewModalOpen, setIsOverviewModalOpen] = useState(false);
-  const [selectedSchedule, setSelectedSchedule] =
-    useState<ScheduleProps | null>(null);
-
-  const handleRemoveClick = (schedule: ScheduleProps) => {
-    setSelectedSchedule(schedule);
-    setIsRemoveModalOpen(true);
-  };
-
-  const handleConfirmRemove = () => {
-    if (selectedSchedule) {
-      scheduleStore.removeSchedule(selectedSchedule.id);
-      setIsRemoveModalOpen(false);
-      setSelectedSchedule(null);
-    }
-  };
-
-  const handleCancelRemove = () => {
-    setIsRemoveModalOpen(false);
-    setSelectedSchedule(null);
-  };
-
-  const handleOpenOverviewModal = (schedule: ScheduleProps) => {
-    setSelectedSchedule(schedule);
-    setIsOverviewModalOpen(true);
-  };
-
-  const handleCloseOverviewModal = () => {
-    setIsOverviewModalOpen(false);
-    setSelectedSchedule(null);
-  };
+  const {
+    selectedSchedule,
+    isRemoveModalOpen,
+    isOverviewModalOpen,
+    openRemoveModal,
+    confirmRemoveSchedule,
+    cancelRemove,
+    openOverviewModal,
+    closeOverviewModal,
+  } = useScheduleModals();
 
   const renderSchedule = (schedule: ScheduleProps) => (
     <div
@@ -53,7 +32,7 @@ const ScheduleOverview: React.FC = observer(() => {
       <div className="flex sm:flex-row w-full items-end justify-center flex-col h-full md:items-center md:h-8">
         <div
           className="flex flex-col decoration-violet-50 justify-start w-full cursor-pointer h-full items-start sm:flex-row sm:items-center"
-          onClick={() => handleOpenOverviewModal(schedule)}
+          onClick={() => openOverviewModal(schedule)}
         >
           <div className="flex flex-col gap-2 flex-wrap w-full max-w-40 sm:flex-row">
             <p className="tracking-wider text-xs font-bold text-gray-200 w-10">
@@ -69,7 +48,7 @@ const ScheduleOverview: React.FC = observer(() => {
         </div>
         <button
           className="text-xs text-red-500 hover:text-red-700"
-          onClick={() => handleRemoveClick(schedule)}
+          onClick={() => openRemoveModal(schedule)}
           type="button"
         >
           Remove
@@ -99,14 +78,14 @@ const ScheduleOverview: React.FC = observer(() => {
         <OverViewModal
           id={selectedSchedule.id}
           isOpen={isOverviewModalOpen}
-          onClose={handleCloseOverviewModal}
+          onClose={closeOverviewModal}
           schedules={[selectedSchedule]}
         />
       )}
       <RemoveModal
         isOpen={isRemoveModalOpen}
-        onClose={handleCancelRemove}
-        onConfirm={handleConfirmRemove}
+        onClose={cancelRemove}
+        onConfirm={confirmRemoveSchedule}
       />
     </div>
   );

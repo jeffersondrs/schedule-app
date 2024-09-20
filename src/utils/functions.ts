@@ -1,4 +1,4 @@
-import { ActionType, FormState, ScheduleProps } from './types';
+import { ScheduleProps } from './types';
 
 export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
   return data.slice().sort((a, b) => {
@@ -31,23 +31,4 @@ export const formatPhone = (phone: string): string => {
   }
 
   return limited;
-};
-
-export function reducer(state: FormState, action: ActionType): FormState {
-  return {
-    ...state,
-    [action.field]: action.value,
-  };
-}
-
-export const getTimeRangeForPeriod = (
-  periodOfDay: 'morning' | 'afternoon' | 'evening',
-) => {
-  const timeMap = {
-    morning: '09h-12h',
-    afternoon: '13h-18h',
-    evening: '19h-21h',
-  };
-
-  return timeMap[periodOfDay];
 };

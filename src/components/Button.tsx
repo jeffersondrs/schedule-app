@@ -1,10 +1,6 @@
 import React from 'react';
 import { BsPlus } from 'react-icons/bs';
-
-interface ButtonProps {
-  title?: string;
-  onClick: () => void;
-}
+import { ButtonProps } from '@/utils/types';
 
 export default function Button({ title, onClick }: ButtonProps) {
   return (
