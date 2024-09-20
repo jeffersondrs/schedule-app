@@ -1,7 +1,7 @@
 import { ActionType, FormState, ScheduleProps } from './types';
 
 export const sortSchedules = (data: ScheduleProps[]): ScheduleProps[] => {
-  return data.sort((a, b) => {
+  return data.slice().sort((a, b) => {
     const timeA = a.scheduleTime.split(':').map(Number);
     const timeB = b.scheduleTime.split(':').map(Number);
 

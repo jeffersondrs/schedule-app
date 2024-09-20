@@ -52,7 +52,7 @@ const ScheduleOverview: React.FC = observer(() => {
     >
       <div className="flex sm:flex-row w-full items-end justify-center flex-col h-full md:items-center md:h-8">
         <div
-          className="flex flex-col decoration-violet-50 gap-3 justify-between w-full cursor-pointer h-full items-start sm:flex-row sm:items-center"
+          className="flex flex-col decoration-violet-50 justify-start w-full cursor-pointer h-full items-start sm:flex-row sm:items-center"
           onClick={() => handleOpenOverviewModal(schedule)}
         >
           <div className="flex flex-col gap-2 flex-wrap w-full max-w-40 sm:flex-row">
@@ -63,7 +63,7 @@ const ScheduleOverview: React.FC = observer(() => {
               {schedule.userSchedule}
             </p>
           </div>
-          <p className="tracking-wider text-xs font-normal text-gray-400 w-full">
+          <p className="tracking-wider text-xs font-normal text-gray-400 break-words text-wrap w-full max-w-xl">
             {schedule.scheduleDescription}
           </p>
         </div>

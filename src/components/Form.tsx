@@ -85,7 +85,7 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center gap-3 w-full z-50"
+      className="flex flex-col justify-center items-center gap-3 w-full z-50 p-6"
     >
       <ToastContainer
         toastClassName={
@@ -109,7 +109,7 @@ export default function Form() {
           Name
         </label>
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md pl-2">
-          <IoPerson className="w-5 h-5 text-purple-700" />
+          <IoPerson className="w-5 h-5 text-[#9282FA]" />
           <span className="w-[1px] h-5 bg-gray-primary mx-2"></span>
           <input
             type="text"
@@ -134,10 +134,11 @@ export default function Form() {
           <textarea
             id="service"
             value={scheduleDescription}
+            placeholder='Describe the service'
             onChange={(e) =>
               handleChange('scheduleDescription', e.target.value)
             }
-            className="w-full h-24 bg-primary text-gray-200 rounded-md resize-none focus:bg-gray-700 p-3"
+            className="w-full h-20 bg-primary text-gray-200 rounded-md resize-none focus:bg-gray-700 p-3 text-xs"
             rows={3}
             maxLength={100}
           />
@@ -152,7 +153,6 @@ export default function Form() {
           Date
         </label>
         <DateButtonComponent
-          selectedDate={selectedDate}
           onDateChange={handleDateChange}
         />
       </div>
@@ -173,7 +173,7 @@ export default function Form() {
       <footer className="flex flex-row justify-end items-center w-full">
         <button
           type="submit"
-          className="bg-purple-700 hover:bg-purple-900 text-gray-950 hover:text-gray-50 transform transition-all duration-300 ease-in-out z-10 text-sm shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
+          className="bg-purple-700 hover:bg-purple-900 text-gray-200 transform transition-all duration-300 ease-in-out z-10 text-sm shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
           title="Schedule"
         >
           Schedule

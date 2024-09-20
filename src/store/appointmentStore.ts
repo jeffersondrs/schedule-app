@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import dayjs, { Dayjs } from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 import { ScheduleProps, SchedulePeriod, SchedulesByDay } from '@/utils/types';
+import { sortSchedules } from '@/utils/functions';
 
 class ScheduleStore {
   schedulesByDay: SchedulesByDay = {};
@@ -14,6 +15,7 @@ class ScheduleStore {
       this.loadSchedules();
     }
   }
+
   setSelectedDay(day: Dayjs) {
     this.selectedDay = day;
   }
@@ -39,13 +41,17 @@ class ScheduleStore {
     evening: ScheduleProps[];
   } {
     const dayString = dayjs(day).format('YYYY-MM-DD');
-    return (
-      this.schedulesByDay[dayString] || {
-        morning: [],
-        afternoon: [],
-        evening: [],
-      }
-    );
+    const schedules = this.schedulesByDay[dayString] || {
+      morning: [],
+      afternoon: [],
+      evening: [],
+    };
+
+    return {
+      morning: sortSchedules(schedules.morning),
+      afternoon: sortSchedules(schedules.afternoon),
+      evening: sortSchedules(schedules.evening),
+    };
   }
 
   addSchedule(
@@ -76,6 +82,9 @@ class ScheduleStore {
       }
 
       this.schedulesByDay[dayString][period].push(newSchedule);
+      this.schedulesByDay[dayString][period] = sortSchedules(
+        this.schedulesByDay[dayString][period],
+      );
       this.saveSchedules();
     });
   }
@@ -98,6 +107,9 @@ class ScheduleStore {
 
         runInAction(() => {
           this.schedulesByDay[dayString][period][scheduleIndex] = updated;
+          this.schedulesByDay[dayString][period] = sortSchedules(
+            this.schedulesByDay[dayString][period],
+          );
           this.saveSchedules();
         });
       }
@@ -114,6 +126,9 @@ class ScheduleStore {
         this.schedulesByDay[dayString][period] = this.schedulesByDay[dayString][
           period
         ].filter((schedule) => schedule.id !== id);
+        this.schedulesByDay[dayString][period] = sortSchedules(
+          this.schedulesByDay[dayString][period],
+        );
         this.saveSchedules();
       });
     }

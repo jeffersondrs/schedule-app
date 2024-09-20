@@ -23,7 +23,7 @@ export default function BasicTimePicker({
     <div className="relative flex flex-col items-center w-full">
       <div className="relative flex flex-row justify-center items-center border bg-primary border-gray-primary rounded-md w-full">
         <div className="p-2">
-          <IoMdClock className="w-5 h-5 text-purple-800" />
+          <IoMdClock className="w-5 h-5 text-[#9282FA]" />
         </div>
         <span className="w-[1px] h-5 bg-gray-primary mr-2"></span>
 

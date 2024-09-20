@@ -19,7 +19,7 @@ export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
         Phone
       </label>
       <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-r-md pl-2">
-        <BsTelephoneFill className="w-5 h-5 text-purple-700" />
+        <BsTelephoneFill className="w-5 h-5 text-[#9282FA]" />
         <span className="w-[1px] h-5 bg-gray-primary mx-2"></span>
         <input
           type="text"
