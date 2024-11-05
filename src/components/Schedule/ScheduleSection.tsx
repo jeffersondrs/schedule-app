@@ -12,7 +12,7 @@ interface ScheduleSectionProps {
 const ScheduleSection: React.FC<ScheduleSectionProps> = observer(
   ({ title, schedules, renderSchedule }) => {
     return (
-      <section className="w-full max-w-4xl bg-primary rounded-xl p-2">
+      <section className="w-full max-w-4xl bg-primary rounded-md p-2">
         <DailyHeader title={title} />
         {schedules.length > 0 ? (
           schedules.map(renderSchedule)
