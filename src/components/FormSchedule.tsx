@@ -23,28 +23,25 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center gap-3 w-full z-50 p-6"
+      className="flex flex-col justify-center items-center gap-3 w-full max-w-xl z-50 p-6"
     >
       <ToastContainer
         toastClassName={
-          'text-sm font-bold text-gray-800 bg-primary border-l-4 border-purple-600 shadow-md'
+          'text-sm text-gray-800 bg-primary border-l-4 border-purple-600 shadow-md'
         }
         theme="dark"
       />
       <header className="flex flex-col justify-center items-start w-full gap-2">
-        <h1 className="text-2xl font-bold text-gray-200">
-          Schedule your appointment
-        </h1>
+        <h1 className="text-sm text-gray-200">Agende um horário</h1>
         <p className="text-xs font-normal text-texting">
-          Please fill in the customer details to schedule the appointment.
-          Ensure you include all necessary information to guarantee efficient
-          and personalized service.
+          Por favor, preencha os campos abaixo para agendar um horário. Preencha
+          todos os campos para confirmar o agendamento.
         </p>
       </header>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label htmlFor="name" className="text-xs font-bold text-gray-200">
-          Name
+        <label htmlFor="name" className="text-xs text-gray-200">
+          Nome
         </label>
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md pl-2">
           <IoPerson className="w-5 h-5 text-[#9282FA]" />
@@ -65,14 +62,14 @@ export default function Form() {
       </div>
 
       <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label htmlFor="service" className="text-xs font-bold text-gray-200">
-          Description
+        <label htmlFor="service" className="text-xs text-gray-200">
+          Descrição
         </label>
         <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-md ">
           <textarea
             id="service"
             value={scheduleDescription}
-            placeholder="Describe the service"
+            placeholder="Descreva o serviço que deseja agendar"
             onChange={(e) =>
               handleChange('scheduleDescription', e.target.value)
             }
@@ -83,36 +80,32 @@ export default function Form() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label
-          htmlFor="scheduleDate"
-          className="text-xs font-bold text-gray-200"
-        >
-          Date
-        </label>
-        <DateButtonComponent onDateChange={handleDateChange} />
-      </div>
+      <div className="flex flex-row w-full gap-2 flex-wrap sm:flex-nowrap items-center justify-center">
+        <div className="flex flex-col justify-center items-start gap-1 w-full">
+          <label htmlFor="scheduleDate" className="text-xs text-gray-200">
+            Data
+          </label>
+          <DateButtonComponent onDateChange={handleDateChange} />
+        </div>
 
-      <div className="flex flex-col justify-center items-start gap-1 w-full">
-        <label
-          htmlFor="scheduleDate"
-          className="text-xs font-bold text-gray-200"
-        >
-          Hour
-        </label>
-        <BasicTimePicker
-          title={scheduleTime}
-          setTime={(time) => handleChange('scheduleTime', time)}
-        />
+        <div className="flex flex-col justify-center items-start gap-1 w-full">
+          <label htmlFor="scheduleDate" className="text-xs text-gray-200">
+            Horário
+          </label>
+          <BasicTimePicker
+            title={scheduleTime}
+            setTime={(time) => handleChange('scheduleTime', time)}
+          />
+        </div>
       </div>
 
       <footer className="flex flex-row justify-end items-center w-full">
         <button
           type="submit"
-          className="bg-purple-700 hover:bg-purple-900 text-gray-200 transform transition-all duration-300 ease-in-out z-10 text-sm shadow-md shadow-purple-400/20 font-bold py-2 px-4 rounded-lg"
+          className="bg-gray-950 hover:bg-gray-900 text-gray-100 transform transition-all duration-300 ease-in-out z-10 text-xs py-2 px-4 rounded-md shadow-md font-bold"
           title="Schedule"
         >
-          Schedule
+          Agendar
         </button>
       </footer>
     </form>

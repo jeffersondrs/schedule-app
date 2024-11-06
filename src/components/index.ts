@@ -5,7 +5,7 @@ import { CalendarUi } from './DateButton/CalendarUi';
 import Modal from './Modal';
 import TimeButton from './TimeButton/TimeButton';
 import InputPhone from './InputPhone';
-import Form from './Form';
+import Form from './FormSchedule';
 
 export {
   DateButtonComponent,

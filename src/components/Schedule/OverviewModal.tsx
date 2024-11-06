@@ -20,23 +20,15 @@ const OverViewModal = ({
 
   return (
     <Modal isOpen={isOpen} isClose={onClose}>
-      <div className="flex flex-col justify-center items-center gap-3 w-full max-w-lg p-5 rounded-lg">
-        <p className="text-base font-semibold text-texting p-2">
-          Schedule Details:
+      <div className="flex flex-col justify-center items-center gap-3 w-full max-w-2xl p-5 rounded-lg">
+        <p className="text-sm font-semibold text-texting p-2">
+          Detalhes do agendamento
         </p>
         {selectedSchedule ? (
           <div className="flex flex-col justify-center md:items-center w-full">
             <div className="flex flex-row gap-2 p-2 w-full flex-wrap">
-              <p className="tracking-wider text-xs font-bold text-gray-200">
-                Time:
-              </p>
-              <p className="tracking-wider text-xs font-bold text-texting">
-                {selectedSchedule.scheduleTime}
-              </p>
-            </div>
-            <div className="flex flex-row gap-2 p-2 w-full flex-wrap">
               <p className="tracking-wider text-xs text-gray-200 font-semibold">
-                User:
+                Usuário:
               </p>
               <p className="tracking-wider text-xs font-bold text-texting">
                 {selectedSchedule.userSchedule}
@@ -44,7 +36,15 @@ const OverViewModal = ({
             </div>
             <div className="flex flex-row gap-2 p-2 w-full flex-wrap">
               <p className="tracking-wider text-xs font-bold text-gray-200">
-                Phone:
+                Horário:
+              </p>
+              <p className="tracking-wider text-xs font-bold text-texting">
+                {selectedSchedule.scheduleTime}
+              </p>
+            </div>
+            <div className="flex flex-row gap-2 p-2 w-full flex-wrap">
+              <p className="tracking-wider text-xs font-bold text-gray-200">
+                Telefone:
               </p>
               <p className="tracking-wider text-xs font-bold text-texting">
                 {formatPhone(selectedSchedule.phoneScheduleUser)}
@@ -52,7 +52,7 @@ const OverViewModal = ({
             </div>
             <div className="flex flex-col gap-2 p-2 w-full flex-wrap ">
               <p className="tracking-wider text-xs font-bold text-gray-200">
-                Description:
+                Descrição:
               </p>
               <p className="tracking-wider text-xs font-bold text-texting break-words text-wrap w-full max-w-52">
                 {selectedSchedule.scheduleDescription}
@@ -60,7 +60,7 @@ const OverViewModal = ({
             </div>
             <div className="flex flex-row gap-2 p-2 w-full flex-wrap">
               <p className="tracking-wider text-xs font-bold text-gray-200">
-                Date:
+                Data:
               </p>
               <p className="tracking-wider text-xs font-bold text-texting">
                 {dayjs(selectedSchedule.scheduleDate).format('DD/MM/YYYY')}

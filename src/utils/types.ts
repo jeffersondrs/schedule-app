@@ -17,7 +17,7 @@ export type ModalProps = {
   isClose: () => void;
 };
 
-export type SchedulePeriod = 'morning' | 'afternoon' | 'evening';
+export type SchedulePeriod = 'manhã' | 'tarde' | 'noite';
 
 export type SchedulesByDay = Record<
   string,
@@ -52,6 +52,7 @@ export interface BasicTimePickerProps {
 export interface ButtonProps {
   title?: string;
   onClick: () => void;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 }
 
 export type ToggleIconProps = {

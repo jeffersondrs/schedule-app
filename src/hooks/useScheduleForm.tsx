@@ -38,7 +38,7 @@ const useScheduleForm = () => {
     e.preventDefault();
 
     if (!name || !phone || !scheduleDescription || !scheduleTime) {
-      toast.error('Please fill in all fields', {
+      toast.error('Erro ao realizar agendamento. Preencha todos os campos!', {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -46,6 +46,11 @@ const useScheduleForm = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+        style: {
+          color: '#fff',
+          fontSize: '12px',
+          fontWeight: 500,
+        },
       });
       return;
     }
@@ -58,8 +63,8 @@ const useScheduleForm = () => {
       phoneScheduleUser: phone,
     });
 
-    toast.success('Schedule added successfully', {
-      position: 'top-center',
+    toast.success('Agendamento realizado com sucesso!', {
+      position: 'top-right',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,

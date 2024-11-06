@@ -39,7 +39,7 @@ export default function Home() {
         <div className="bg-primary rounded-br-xl mb-5 p-2 flex flex-row flex-wrap justify-between items-center gap-2 w-full">
           <div className="flex flex-row gap-2 justify-center items-center">
             <BsCalendarDateFill className="w-6 h-6 text-[#9282FA]" />
-            <p className="text-sm font-bold text-[#9282FA] uppercase font-mono">
+            <p className="text-base font-bold text-[#9282FA] uppercase font-mono">
               Agendamentos
             </p>
           </div>
@@ -98,19 +98,13 @@ export default function Home() {
                   )}
                 </div>
               </div>
-              <button
-                type="button"
-                className="bg-secondary p-2 text-gray-100 rounded-md text-xs w-full sm:w-24 font-mono"
-                onClick={handleLogin}
-              >
-                Entrar
-              </button>
+              <Button title="Entrar" size="xs" onClick={handleLogin} />
             </form>
           </div>
         </div>
         <div className="flex flex-row justify-between gap-2 flex-wrap md:py-3 w-full">
           <div className="h-full flex-col justify-start items-center">
-            <h1 className="text-lg font-medium text-gray-100">
+            <h1 className="text-sm font-medium text-gray-100">
               Seus agendamentos
             </h1>
             <p className="text-xs font-normal text-gray-300">
@@ -129,7 +123,7 @@ export default function Home() {
         <Form />
       </Modal>
       <footer className="bottom-3 right-3 max-w-4xl w-full fixed flex flex-row justify-end">
-        <Button title="Novo agendamento" onClick={handleOpenModal} />
+        <Button title="Novo agendamento" onClick={handleOpenModal} size="sm" />
       </footer>
     </div>
   );

@@ -11,8 +11,8 @@ export default function InputPhone({ phone, setPhone }: InputPhoneProps) {
 
   return (
     <>
-      <label htmlFor="phone" className="text-xs font-bold text-gray-200">
-        Phone
+      <label htmlFor="phone" className="text-xs text-gray-200">
+        Telefone
       </label>
       <div className="flex flex-row justify-center items-center w-full border-gray-primary border rounded-r-md pl-2">
         <BsTelephoneFill className="w-5 h-5 text-[#9282FA]" />
