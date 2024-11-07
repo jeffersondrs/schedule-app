@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite';
 const DailyHeader: React.FC<{ title: SchedulePeriod }> = observer(
   ({ title }) => {
     const iconMap = {
-      manhã: <IoSunny className="w-5 h-5 text-blue-600" />,
+      manha: <IoSunny className="w-5 h-5 text-blue-600" />,
       tarde: <IoPartlySunnySharp className="w-5 h-5 text-orange-600" />,
       noite: <BsFillMoonStarsFill className="w-5 h-5 text-yellow-600" />,
     };
@@ -21,7 +21,7 @@ const DailyHeader: React.FC<{ title: SchedulePeriod }> = observer(
           </p>
         </div>
         <p className="text-xs text-texting text-end font-mono">
-          {title === 'manhã'
+          {title === 'manha'
             ? '09:00 - 12:00'
             : title === 'tarde'
               ? '13:00 - 18:00'
