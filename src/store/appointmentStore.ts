@@ -25,11 +25,11 @@ class ScheduleStore {
     const hour = parseInt(hourString, 10);
 
     if (hour >= 9 && hour < 12) {
-      return 'morning';
+      return 'manha';
     } else if (hour >= 13 && hour < 18) {
-      return 'afternoon';
+      return 'tarde';
     } else if (hour >= 19 && hour <= 21) {
-      return 'evening';
+      return 'noite';
     }
 
     return null;
@@ -48,9 +48,9 @@ class ScheduleStore {
     };
 
     return {
-      morning: sortSchedules(schedules.morning),
-      afternoon: sortSchedules(schedules.afternoon),
-      evening: sortSchedules(schedules.evening),
+      morning: sortSchedules(schedules.manha),
+      afternoon: sortSchedules(schedules.tarde),
+      evening: sortSchedules(schedules.noite),
     };
   }
 
@@ -75,9 +75,9 @@ class ScheduleStore {
     runInAction(() => {
       if (!this.schedulesByDay[dayString]) {
         this.schedulesByDay[dayString] = {
-          morning: [],
-          afternoon: [],
-          evening: [],
+          manha: [],
+          tarde: [],
+          noite: [],
         };
       }
 
@@ -138,7 +138,7 @@ class ScheduleStore {
     id: string,
   ): { dayString: string; period: SchedulePeriod } | null {
     for (const [dayString, periods] of Object.entries(this.schedulesByDay)) {
-      for (const period of ['morning', 'afternoon', 'evening'] as const) {
+      for (const period of ['manha', 'tarde', 'noite'] as const) {
         if (periods[period].some((schedule) => schedule.id === id)) {
           return { dayString, period };
         }

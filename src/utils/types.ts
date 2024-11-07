@@ -17,14 +17,14 @@ export type ModalProps = {
   isClose: () => void;
 };
 
-export type SchedulePeriod = 'manhã' | 'tarde' | 'noite';
+export type SchedulePeriod = 'manha' | 'tarde' | 'noite';
 
 export type SchedulesByDay = Record<
   string,
   {
-    morning: ScheduleProps[];
-    afternoon: ScheduleProps[];
-    evening: ScheduleProps[];
+    manha: ScheduleProps[];
+    tarde: ScheduleProps[];
+    noite: ScheduleProps[];
   }
 >;
 
