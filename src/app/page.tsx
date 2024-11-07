@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { DateButtonComponent, Button, Modal, Form } from '@/components';
+import { DateButtonComponent, Button, Modal, Form, SignIn } from '@/components';
 import { ScheduleOverview } from '@/components/index';
 import {
   BsCalendarDateFill,
@@ -62,6 +62,7 @@ export default function Home() {
                 className="rounded-full w-7 h-7 object-cover cursor-pointer"
               />
             </div>
+            <SignIn provider='Google'/>
             <form
               className={`
               flex flex-row justify-center items-center gap-1 flex-wrap w-full              

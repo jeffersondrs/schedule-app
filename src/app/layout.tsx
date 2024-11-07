@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { StoreProvider } from '@/store/storeContext';
 import dynamic from 'next/dynamic';
+import { SessionProvider } from 'next-auth/react';
 
 const poppins = Poppins({
   weight: '400',
@@ -34,9 +35,11 @@ export default function RootLayout({
           ${poppins.className}
           antialiased`}
       >
-        <DynamicContextProvider>
-          <StoreProvider>{children}</StoreProvider>
-        </DynamicContextProvider>
+        <StoreProvider>
+          <DynamicContextProvider>
+            <SessionProvider>{children}</SessionProvider>
+          </DynamicContextProvider>
+        </StoreProvider>
       </body>
     </html>
   );
