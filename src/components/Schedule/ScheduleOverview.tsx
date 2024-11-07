@@ -60,7 +60,7 @@ const ScheduleOverview: React.FC = observer(() => {
   return (
     <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 relative">
       <ScheduleSection
-        title="manhã"
+        title="manha"
         schedules={morning}
         renderSchedule={renderSchedule}
       />
