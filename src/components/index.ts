@@ -6,7 +6,7 @@ import Modal from './Modal';
 import TimeButton from './TimeButton/TimeButton';
 import InputPhone from './InputPhone';
 import Form from './FormSchedule';
-import { SignIn, SignOut } from './SignIn';
+import SignIn from './SignIn';
 import LoginForm from './LoginForm';
 
 export {
@@ -19,6 +19,5 @@ export {
   InputPhone,
   Form,
   SignIn,
-  SignOut,
   LoginForm,
 };

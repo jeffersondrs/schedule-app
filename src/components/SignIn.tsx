@@ -1,37 +1,19 @@
-"use client";
+export default function SignIn({
+  updateItemAction,
+}: {
+  updateItemAction: (formData: FormData) => void;
+}) {
 
-import { signIn, signOut } from "@/auth";
 
-async function handleSignIn({provider}: {provider: string}) {
-  "use client";
-  await signIn(provider);
-}
-
-async function handleSignOut() {
-  "use client";
-  await signOut();
-}
-
-export function SignIn({ provider }: { provider: string }) {
   return (
     <form
-      action={() => handleSignIn({ provider })}
+      onSubmit={(e) => {
+        e.preventDefault();
+        updateItemAction(new FormData());
+      }}
     >
-      <button type="button" className="w-full">
+      <button type="submit" className="w-full text-xs text-gray-50">
         Sign In with Google
-      </button>
-    </form>
-  );
-}
-
-export function SignOut() {
-  return (
-    <form
-      action={handleSignOut}
-      className="w-full"
-    >
-      <button className="w-full p-0">
-        Sign Out
       </button>
     </form>
   );

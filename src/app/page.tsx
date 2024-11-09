@@ -11,6 +11,7 @@ import {
 } from 'react-icons/bs';
 import { Dayjs } from 'dayjs';
 import { useStore } from '@/store/storeContext';
+import { login } from '@/action/user';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,7 +63,11 @@ export default function Home() {
                 className="rounded-full w-7 h-7 object-cover cursor-pointer"
               />
             </div>
-            <SignIn provider='Google'/>
+            <SignIn
+              updateItemAction={() => {
+                login('google');
+              }}
+            />
             <form
               className={`
               flex flex-row justify-center items-center gap-1 flex-wrap w-full              
