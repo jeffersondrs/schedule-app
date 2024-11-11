@@ -2,16 +2,18 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { DateButtonComponent, Button, Modal, Form, SignIn } from '@/components';
-import { ScheduleOverview } from '@/components/index';
+import {
+  DateButtonComponent,
+  Modal,
+  Form,
+  ScheduleOverview,
+} from '@/components';
+import { Button } from '@/components/ui/button';
 import {
   BsCalendarDateFill,
-  BsFillEyeFill,
-  BsFillEyeSlashFill,
 } from 'react-icons/bs';
 import { Dayjs } from 'dayjs';
 import { useStore } from '@/store/storeContext';
-import { login } from '@/action/login';
 import Link from 'next/link';
 
 export default function Home() {
@@ -97,7 +99,13 @@ export default function Home() {
         <Form />
       </Modal>
       <footer className="bottom-3 right-3 max-w-4xl w-full fixed flex flex-row justify-end">
-        <Button title="Novo agendamento" onClick={handleOpenModal} size="sm" />
+        <Button
+          variant="default"
+          className=" text-xs"
+          onClick={handleOpenModal}
+        >
+          Novo Agendamento
+        </Button>
       </footer>
     </div>
   );

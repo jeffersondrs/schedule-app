@@ -1,4 +1,3 @@
-import Button from './Button';
 import DateButtonComponent from './DateButton/DateButtomComponent';
 import ScheduleOverview from './Schedule/ScheduleOverview';
 import { CalendarUi } from './DateButton/CalendarUi';
@@ -14,7 +13,6 @@ export {
   DateButtonComponent,
   ScheduleOverview,
   CalendarUi,
-  Button,
   Modal,
   TimeButton,
   InputPhone,

@@ -18,7 +18,7 @@ export default function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Login</CardTitle>
+        <CardTitle className="text-lg">Entrar</CardTitle>
         <CardDescription className="text-sm">
           Entre com seu e-mail e senha para acessar sua conta.
         </CardDescription>
@@ -54,7 +54,7 @@ export default function LoginForm() {
             />
           </div>
           <Button type="submit" className="w-full text-xs">
-            Login
+            Entrar
           </Button>
           <form
             className="flex items-center"
@@ -65,14 +65,14 @@ export default function LoginForm() {
           >
             <Button variant="outline" className="w-full text-xs">
               <FaGoogle className="mr-2" />
-              Login with Google
+              Entrar com Google
             </Button>
           </form>
         </div>
         <div className="mt-4 text-center text-xs">
-          Don&apos;t have an account?{' '}
+          Não tem uma conta?{' '}
           <Link href="/auth/signup" className="underline">
-            Sign up
+            Registrar-se
           </Link>
         </div>
       </CardContent>

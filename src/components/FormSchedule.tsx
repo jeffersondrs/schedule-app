@@ -7,6 +7,7 @@ import InputPhone from './InputPhone';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useScheduleForm from '@/hooks/useScheduleForm';
+import { Button } from '@/components/ui/button';
 
 export default function Form() {
   const {
@@ -100,13 +101,9 @@ export default function Form() {
       </div>
 
       <footer className="flex flex-row justify-end items-center w-full">
-        <button
-          type="submit"
-          className="bg-gray-950 hover:bg-gray-900 text-gray-100 transform transition-all duration-300 ease-in-out z-10 text-xs py-2 px-4 rounded-md shadow-md font-bold"
-          title="Schedule"
-        >
+        <Button variant="default" type="submit" className=" text-xs">
           Agendar
-        </button>
+        </Button>
       </footer>
     </form>
   );
