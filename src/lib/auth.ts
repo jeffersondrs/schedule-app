@@ -1,6 +1,8 @@
-import NextAuth, { CredentialsSignin } from 'next-auth';
+import NextAuth from 'next-auth';
+import bcrypt from 'bcryptjs';
 import Credentials from 'next-auth/providers/credentials';
-
+import { connectDB } from '@/lib/mongodb';
+import User from '@/models/User';
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
 // import Facebook from 'next-auth/providers/facebook';
@@ -26,20 +28,27 @@ export const {
     Credentials({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text' },
+        email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
       authorize: async (credentials) => {
-        const email = credentials.username as string | undefined;
-        const password = credentials.password as string | undefined;
-        if (!email || !password) {
-          throw new CredentialsSignin('Missing credentials');
-        }
-        return { id: '1', name: 'User' };
+        await connectDB();
+        const user = await User.findOne({
+          email: credentials?.email,
+        }).select('+password');
+        if (!user) throw new Error('Wrong Email');
+        const passwordMatch = await bcrypt.compare(
+          credentials!.password as string,
+          user.password,
+        );
+        if (!passwordMatch) throw new Error('Wrong Password');
+        return user;
       },
     }),
   ],
-
+  session: {
+    strategy: 'jwt',
+  },
   callbacks: {
     async session({ session, token }) {
       if (token?.sub) {
@@ -56,18 +65,20 @@ export const {
       return token;
     },
 
-    signIn: async ({ user, account }) => {
+    signIn: async ({ 
+       account }) => {
       if (account?.provider === 'credentials') {
         return true;
       }
 
       if (account?.provider === 'google') {
         try {
-          const { email, name } = user;
-          console.log('email', email);
-          console.log('name', name);
+          // const { email, name, image, id } = user;
+          // console.log('email', email);
+          // console.log('name', name);
           // console.log('image', image)
           // console.log('id', id)
+
           return true;
         } catch (error) {
           console.log(error);

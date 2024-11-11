@@ -11,7 +11,8 @@ import {
 } from 'react-icons/bs';
 import { Dayjs } from 'dayjs';
 import { useStore } from '@/store/storeContext';
-import { login } from '@/action/user';
+import { login } from '@/action/login';
+import Link from 'next/link';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,49 +64,16 @@ export default function Home() {
                 className="rounded-full w-7 h-7 object-cover cursor-pointer"
               />
             </div>
-            <SignIn
-              updateItemAction={() => {
-                login('google');
-              }}
-            />
-            <form
-              className={`
-              flex flex-row justify-center items-center gap-1 flex-wrap w-full              
-              ${isLogged ? 'hidden' : 'visible'}
-              `}
-              onSubmit={handleLogin}
-            >
-              <input
-                type="text"
-                placeholder="e-mail"
-                className="bg-gray-900 text-gray-100 p-2 rounded-md text-xs w-full sm:w-44 font-mono"
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
-              />
-              <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
-              <div className="bg-transparent flex relative w-full sm:w-40">
-                <input
-                  type={type}
-                  placeholder="senha"
-                  className="text-xs p-2 pr-7 w-full bg-gray-900 text-gray-100 rounded-md font-mono"
-                  onChange={(e) =>
-                    setUser({ ...user, password: e.target.value })
-                  }
-                />
-                <div
-                  className="cursor-pointer absolute right-2 top-2"
-                  onClick={() =>
-                    setType(type === 'password' ? 'text' : 'password')
-                  }
-                >
-                  {type === 'password' ? (
-                    <BsFillEyeFill className="text-gray-100" />
-                  ) : (
-                    <BsFillEyeSlashFill className="text-gray-100" />
-                  )}
-                </div>
-              </div>
-              <Button title="Entrar" size="xs" onClick={handleLogin} />
-            </form>
+            <div className="flex flex-row justify-center items-center gap-1">
+              <p className="text-xs font-normal text-gray-300">
+                Faça login para acessar sua conta.
+              </p>
+              <Link href="/auth/signin">
+                <p className="text-xs font-bold text-[#9282FA] cursor-pointer">
+                  Login
+                </p>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="flex flex-row justify-between gap-2 flex-wrap md:py-3 w-full">

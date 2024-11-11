@@ -14,18 +14,24 @@ import { FaGoogle } from 'react-icons/fa';
 import { login } from '@/action/login';
 import { InputPassword } from '@/components';
 
-export default function LoginForm() {
+export default function Register() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Login</CardTitle>
+        <CardTitle className="text-lg">Registro</CardTitle>
         <CardDescription className="text-sm">
-          Entre com seu e-mail e senha para acessar sua conta.
+          Crie sua conta para acessar o sistema.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
-          <div className="grid gap-2">
+          <div className="grid gap-1">
+            <Label htmlFor="name" className="text-xs">
+              Nome
+            </Label>
+            <Input id="name" type="text" required className="text-xs" />
+          </div>
+          <div className="grid gap-1">
             <Label htmlFor="email" className="text-xs">
               E-mail
             </Label>
@@ -37,14 +43,11 @@ export default function LoginForm() {
               className="text-xs"
             />
           </div>
-          <div className="grid gap-2">
+          <div className="grid gap-1">
             <div className="flex items-center">
               <Label htmlFor="password" className="text-xs">
                 Senha
               </Label>
-              <Link href="#" className="ml-auto inline-block underline text-xs">
-                Esqueceu a senha?
-              </Link>
             </div>
             <InputPassword
               id="password"
@@ -53,8 +56,21 @@ export default function LoginForm() {
               className="text-xs"
             />
           </div>
+          <div className="grid gap-1">
+            <div className="flex items-center">
+              <Label htmlFor="password" className="text-xs">
+                Confirmar Senha
+              </Label>
+            </div>
+            <InputPassword
+              id="password"
+              placeholder="Confirmar Senha"
+              required
+              className="text-xs"
+            />
+          </div>
           <Button type="submit" className="w-full text-xs">
-            Login
+            Registrar
           </Button>
           <form
             className="flex items-center"
@@ -65,14 +81,14 @@ export default function LoginForm() {
           >
             <Button variant="outline" className="w-full text-xs">
               <FaGoogle className="mr-2" />
-              Login with Google
+              Login com Google
             </Button>
           </form>
         </div>
         <div className="mt-4 text-center text-xs">
-          Don&apos;t have an account?{' '}
-          <Link href="/auth/signup" className="underline">
-            Sign up
+          Já possui uma conta?{' '}
+          <Link href="/auth/signin" className="underline">
+            Login
           </Link>
         </div>
       </CardContent>

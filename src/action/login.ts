@@ -1,5 +1,5 @@
 'use server';
-import { signIn } from '@/auth';
+import { signIn } from '@/lib/auth';
 
 const register = async (formData: FormData) => {
   const email = formData.get('email') as string;

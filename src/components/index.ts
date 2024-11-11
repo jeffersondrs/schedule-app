@@ -6,8 +6,9 @@ import Modal from './Modal';
 import TimeButton from './TimeButton/TimeButton';
 import InputPhone from './InputPhone';
 import Form from './FormSchedule';
-import SignIn from './SignIn';
+import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
+import InputPassword from './InputPassword';
 
 export {
   DateButtonComponent,
@@ -18,6 +19,7 @@ export {
   TimeButton,
   InputPhone,
   Form,
-  SignIn,
+  RegisterForm,
   LoginForm,
+  InputPassword,
 };
