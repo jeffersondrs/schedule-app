@@ -81,14 +81,14 @@ export default function Register() {
           >
             <Button variant="outline" className="w-full text-xs">
               <FaGoogle className="mr-2" />
-              Login com Google
+              Entrar com Google
             </Button>
           </form>
         </div>
         <div className="mt-4 text-center text-xs">
           Já possui uma conta?{' '}
           <Link href="/auth/signin" className="underline">
-            Login
+            Entrar
           </Link>
         </div>
       </CardContent>
