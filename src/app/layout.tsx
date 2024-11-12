@@ -4,6 +4,7 @@ import './globals.css';
 import { StoreProvider } from '@/store/storeContext';
 import dynamic from 'next/dynamic';
 import { SessionProvider } from 'next-auth/react';
+import { AuthProvider } from '@/context/AuthContext';
 
 const poppins = Poppins({
   weight: '400',
@@ -37,7 +38,9 @@ export default function RootLayout({
       >
         <StoreProvider>
           <DynamicContextProvider>
-            <SessionProvider>{children}</SessionProvider>
+            <SessionProvider>
+              <AuthProvider>{children}</AuthProvider>
+            </SessionProvider>
           </DynamicContextProvider>
         </StoreProvider>
       </body>

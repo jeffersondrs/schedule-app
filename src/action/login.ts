@@ -1,5 +1,5 @@
 'use server';
-import { signIn } from '@/lib/auth';
+import { signIn, signOut } from '@/lib/auth';
 
 const register = async (formData: FormData) => {
   const email = formData.get('email') as string;
@@ -8,13 +8,14 @@ const register = async (formData: FormData) => {
   if (!email || !password) {
     throw new Error('Invalid email or password');
   }
-
-  console.log('Registering user with email:', email);
-  console.log('Registering user with password:', password);
 };
 
 const login = async (provider: string) => {
-  await signIn(provider);
+  await signIn(provider, { redirectTo: '/' });
 };
 
-export { register, login };
+const logout = async () => {
+  await signOut({ redirect: false });
+};
+
+export { register, login, logout };

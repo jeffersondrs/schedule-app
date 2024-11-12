@@ -71,3 +71,10 @@ export interface OverViewModalProps {
   onClose: () => void;
   schedules: ScheduleProps[];
 }
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}

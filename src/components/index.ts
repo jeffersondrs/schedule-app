@@ -8,6 +8,7 @@ import Form from './FormSchedule';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import InputPassword from './InputPassword';
+import { DropDownMenu } from './DropDownMenu';
 
 export {
   DateButtonComponent,
@@ -20,4 +21,5 @@ export {
   RegisterForm,
   LoginForm,
   InputPassword,
+  DropDownMenu,
 };

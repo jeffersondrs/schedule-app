@@ -5,7 +5,6 @@ import { connectDB } from '@/lib/mongodb';
 import User from '@/models/User';
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
-// import Facebook from 'next-auth/providers/facebook';
 // import Twitter from 'next-auth/providers/twitter';
 
 export const {
@@ -65,20 +64,13 @@ export const {
       return token;
     },
 
-    signIn: async ({ 
-       account }) => {
+    signIn: async ({ account }) => {
       if (account?.provider === 'credentials') {
         return true;
       }
 
       if (account?.provider === 'google') {
         try {
-          // const { email, name, image, id } = user;
-          // console.log('email', email);
-          // console.log('name', name);
-          // console.log('image', image)
-          // console.log('id', id)
-
           return true;
         } catch (error) {
           console.log(error);

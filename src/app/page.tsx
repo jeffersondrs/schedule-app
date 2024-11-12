@@ -1,41 +1,42 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 import {
   DateButtonComponent,
   Modal,
   Form,
   ScheduleOverview,
+  DropDownMenu,
 } from '@/components';
 import { Button } from '@/components/ui/button';
-import {
-  BsCalendarDateFill,
-} from 'react-icons/bs';
+import { BsCalendarDateFill } from 'react-icons/bs';
 import { Dayjs } from 'dayjs';
 import { useStore } from '@/store/storeContext';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [user, setUser] = useState({ email: '', password: '' });
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const [type, setType] = useState('password');
-
   const { scheduleStore } = useStore();
-  const [isLogged, setIsLogged] = useState(false);
   const handleDateChange = (newDate: Dayjs) => {
     scheduleStore.setSelectedDay(newDate);
   };
 
-  const handleLogin = () => {
-    if (user.email !== '' && user.password !== '') {
+  const { isLogged, setIsLogged } = useAuth();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
       setIsLogged(true);
+    } else {
+      setIsLogged(false);
     }
-  };
+  }, [session, setIsLogged]);
 
   return (
     <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-3 relative">
@@ -56,17 +57,19 @@ export default function Home() {
             >
               <p className="text-xs font-normal text-gray-300">
                 Bem vindo,{' '}
-                <span className="font-bold">{user.email.split('@')[0]}</span>!
+                <span className="font-bold">
+                  {session?.user?.name?.split(' ')[0]}
+                </span>
+                !
               </p>
-              <Image
-                src="/avatar/avatar.jpeg"
-                alt="avatar"
-                width={100}
-                height={100}
-                className="rounded-full w-7 h-7 object-cover cursor-pointer"
-              />
+              <DropDownMenu />
             </div>
-            <div className="flex flex-row justify-center items-center gap-1">
+            <div
+              className={`
+              flex flex-row justify-center items-center gap-1
+              ${isLogged ? 'hidden' : 'visible'}
+              `}
+            >
               <p className="text-xs font-normal text-gray-300">
                 Faça login para acessar sua conta.
               </p>

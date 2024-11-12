@@ -10,4 +10,3 @@ export const typeOfInput = (type: string) => {
       return 'text';
   }
 };
-
