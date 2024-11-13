@@ -9,6 +9,7 @@ import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import InputPassword from './InputPassword';
 import { DropDownMenu } from './DropDownMenu';
+import ProtectedNavigation from './ProtectedNavigation';
 
 export {
   DateButtonComponent,
@@ -22,4 +23,5 @@ export {
   LoginForm,
   InputPassword,
   DropDownMenu,
+  ProtectedNavigation,
 };

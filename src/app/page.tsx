@@ -1,20 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   DateButtonComponent,
   Modal,
   Form,
   ScheduleOverview,
-  DropDownMenu,
+  ProtectedNavigation,
 } from '@/components';
 import { Button } from '@/components/ui/button';
 import { BsCalendarDateFill } from 'react-icons/bs';
 import { Dayjs } from 'dayjs';
 import { useStore } from '@/store/storeContext';
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
-import { useAuth } from '@/context/AuthContext';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,17 +24,6 @@ export default function Home() {
     scheduleStore.setSelectedDay(newDate);
   };
 
-  const { isLogged, setIsLogged } = useAuth();
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    if (session) {
-      setIsLogged(true);
-    } else {
-      setIsLogged(false);
-    }
-  }, [session, setIsLogged]);
-
   return (
     <div className="flex flex-col justify-start items-center min-h-screen w-full bg-gray-950 gap-3 pb-16 px-3 relative">
       <header className="flex flex-col justify-center items-start w-full max-w-4xl">
@@ -48,38 +34,7 @@ export default function Home() {
               Agendamentos
             </p>
           </div>
-          <div className="flex flex-row justify-center items-center">
-            <div
-              className={`
-            flex flex-row justify-center items-center gap-2
-            ${isLogged ? 'visible' : 'hidden'}
-              `}
-            >
-              <p className="text-xs font-normal text-gray-300">
-                Bem vindo,{' '}
-                <span className="font-bold">
-                  {session?.user?.name?.split(' ')[0]}
-                </span>
-                !
-              </p>
-              <DropDownMenu />
-            </div>
-            <div
-              className={`
-              flex flex-row justify-center items-center gap-1
-              ${isLogged ? 'hidden' : 'visible'}
-              `}
-            >
-              <p className="text-xs font-normal text-gray-300">
-                Faça login para acessar sua conta.
-              </p>
-              <Link href="/auth/signin">
-                <p className="text-xs font-bold text-[#9282FA] cursor-pointer">
-                  Login
-                </p>
-              </Link>
-            </div>
-          </div>
+          <ProtectedNavigation />
         </div>
         <div className="flex flex-row justify-between gap-2 flex-wrap md:py-3 w-full">
           <div className="h-full flex-col justify-start items-center">

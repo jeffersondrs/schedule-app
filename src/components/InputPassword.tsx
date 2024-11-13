@@ -7,6 +7,7 @@ export default function InputPassword(props: {
   placeholder: string;
   required?: boolean;
   className?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,6 +19,7 @@ export default function InputPassword(props: {
         placeholder={props.placeholder}
         required={props.required}
         className={props.className}
+        onChange={props.onChange}
       />
       <button
         type="button"

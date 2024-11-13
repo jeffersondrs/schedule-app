@@ -20,7 +20,7 @@ const ScheduleSection: React.FC<ScheduleSectionProps> = observer(
           <div className="flex flex-col justify-center items-start border-b border-gray-primary p-4 md:flex-row md:gap-3 last:border-0">
             <div className="flex flex-row gap-3 justify-between md:flex-row w-full text-start">
               <p className="text-xs text-gray-400">
-                No schedules for the {title}.
+                Sem agendamentos para o periodo da {title}.
               </p>
             </div>
           </div>

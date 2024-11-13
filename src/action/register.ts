@@ -3,13 +3,13 @@ import { connectDB } from '@/lib/mongodb';
 import User from '@/models/User';
 import bcrypt from 'bcryptjs';
 
-interface RegisterValues {
+interface UserInformations {
   email: string;
   password: string;
   name: string;
 }
 
-export const register = async (values: RegisterValues) => {
+export const register = async (values: UserInformations) => {
   const { email, password, name } = values;
 
   try {
@@ -20,18 +20,27 @@ export const register = async (values: RegisterValues) => {
         error: 'Email already exists!',
       };
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
       name,
       email,
       password: hashedPassword,
     });
+
     const savedUser = await user.save();
 
     return {
-      user: savedUser,
+      user: {
+        id: savedUser._id.toString(),
+        name: savedUser.name,
+        email: savedUser.email,
+      },
     };
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    return {
+      error: 'Something went wrong during registration.',
+    };
   }
 };

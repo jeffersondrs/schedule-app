@@ -1,5 +1,6 @@
+'use client';
 import Link from 'next/link';
-
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,11 +11,16 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { FaGoogle } from 'react-icons/fa';
-import { login } from '@/action/login';
 import { InputPassword } from '@/components';
+import { register } from '@/action/register';
 
 export default function Register() {
+  const [userRegister, setUserRegister] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -24,12 +30,26 @@ export default function Register() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4">
+        <form
+          className="grid gap-4"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            await register(userRegister);
+          }}
+        >
           <div className="grid gap-1">
             <Label htmlFor="name" className="text-xs">
               Nome
             </Label>
-            <Input id="name" type="text" required className="text-xs" />
+            <Input
+              id="name"
+              type="text"
+              required
+              className="text-xs"
+              onChange={(e) =>
+                setUserRegister({ ...userRegister, name: e.target.value })
+              }
+            />
           </div>
           <div className="grid gap-1">
             <Label htmlFor="email" className="text-xs">
@@ -41,6 +61,9 @@ export default function Register() {
               placeholder="m@examplo.com"
               required
               className="text-xs"
+              onChange={(e) =>
+                setUserRegister({ ...userRegister, email: e.target.value })
+              }
             />
           </div>
           <div className="grid gap-1">
@@ -54,6 +77,9 @@ export default function Register() {
               placeholder="Senha"
               required
               className="text-xs"
+              onChange={(e) =>
+                setUserRegister({ ...userRegister, password: e.target.value })
+              }
             />
           </div>
           <div className="grid gap-1">
@@ -72,19 +98,7 @@ export default function Register() {
           <Button type="submit" className="w-full text-xs">
             Registrar
           </Button>
-          <form
-            className="flex items-center"
-            onSubmit={(e) => {
-              e.preventDefault();
-              login('google');
-            }}
-          >
-            <Button variant="outline" className="w-full text-xs">
-              <FaGoogle className="mr-2" />
-              Entrar com Google
-            </Button>
-          </form>
-        </div>
+        </form>
         <div className="mt-4 text-center text-xs">
           Já possui uma conta?{' '}
           <Link href="/auth/signin" className="underline">

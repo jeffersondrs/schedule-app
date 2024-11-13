@@ -19,16 +19,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useSession } from 'next-auth/react';
 import { logout } from '@/action/login';
-import { useAuth } from '@/context/AuthContext';
 
 export function DropDownMenu() {
   const { data: session } = useSession();
-  const { setIsLogged } = useAuth();
 
   const handleLogout = () => async () => {
     logout();
     setTimeout(() => {
-      setIsLogged(false);
+      window.location.reload();
     }, 1000);
   };
 
