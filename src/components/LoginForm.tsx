@@ -13,8 +13,10 @@ import { Label } from '@/components/ui/label';
 import { FaGoogle } from 'react-icons/fa';
 import { login } from '@/action/login';
 import { InputPassword } from '@/components';
+import { useRegisterForm } from '@/hooks/useRegisterForm';
 
 export default function LoginForm() {
+  const { register } = useRegisterForm();
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -51,6 +53,8 @@ export default function LoginForm() {
               placeholder="Senha"
               required
               className="text-xs"
+              name="password"
+              register={register}
             />
           </div>
           <Button type="submit" className="w-full text-xs">

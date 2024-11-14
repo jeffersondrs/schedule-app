@@ -11,43 +11,17 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import InputPassword from '@/components/InputPassword'; // Importando o InputPassword
-import { useRegisterForm } from '@/hooks/useRegisterForm'; // Hook para validação e estado
-import { toast, ToastContainer } from 'react-toastify';
+import InputPassword from '@/components/InputPassword';
+import { useRegisterForm } from '@/hooks/useRegisterForm';
+import { ToastContainer } from 'react-toastify';
 import { FaSpinner } from 'react-icons/fa';
-import { register } from '@/action/register';
 
 export default function Register() {
-  const {
-    userRegister,
-    handleChange,
-    validateForm,
-    errors,
-    loading,
-    setLoading,
-  } = useRegisterForm();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const result = await register(userRegister);
-      if (result.error) {
-        toast.error(result.error);
-      } else {
-        toast.success('Usuário registrado com sucesso!');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { register, handleSubmit, errors, isSubmitting, onSubmit } =
+    useRegisterForm();
 
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-md w-full">
       <ToastContainer />
       <CardHeader>
         <CardTitle className="text-lg">Registro</CardTitle>
@@ -56,38 +30,37 @@ export default function Register() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="grid gap-4" onSubmit={handleSubmit}>
+        <form
+          className="grid gap-4"
+          onSubmit={handleSubmit(onSubmit)} // Use handleSubmit do React Hook Form
+        >
           <div className="grid gap-1">
             <Label htmlFor="name" className="text-xs">
               Nome
             </Label>
             <Input
               id="name"
-              type="text"
               placeholder="Seu nome"
-              value={userRegister.name}
-              onChange={handleChange('name')}
+              {...register('name')}
               className="text-xs"
             />
             {errors.name && (
-              <p className="text-xs text-red-500">{errors.name}</p>
+              <p className="text-xs text-red-500">{errors.name.message}</p>
             )}
           </div>
 
           <div className="grid gap-1">
             <Label htmlFor="email" className="text-xs">
-              Email
+              E-mail
             </Label>
             <Input
               id="email"
-              type="email"
               placeholder="m@examplo.com"
-              value={userRegister.email}
-              onChange={handleChange('email')}
+              {...register('email')}
               className="text-xs"
             />
             {errors.email && (
-              <p className="text-xs text-red-500">{errors.email}</p>
+              <p className="text-xs text-red-500">{errors.email.message}</p>
             )}
           </div>
 
@@ -96,14 +69,14 @@ export default function Register() {
               Senha
             </Label>
             <InputPassword
-              id="password"
-              placeholder="Digite sua senha"
-              value={userRegister.password}
-              onChange={handleChange('password')}
+              id="confirmPassword"
+              placeholder="Confirme sua senha"
               className="text-xs"
+              register={register}
+              name="password"
             />
             {errors.password && (
-              <p className="text-xs text-red-500">{errors.password}</p>
+              <p className="text-xs text-red-500">{errors.password.message}</p>
             )}
           </div>
 
@@ -114,17 +87,23 @@ export default function Register() {
             <InputPassword
               id="confirmPassword"
               placeholder="Confirme sua senha"
-              value={userRegister.confirmPassword}
-              onChange={handleChange('confirmPassword')}
               className="text-xs"
+              register={register}
+              name="confirmPassword"
             />
             {errors.confirmPassword && (
-              <p className="text-xs text-red-500">{errors.confirmPassword}</p>
+              <p className="text-xs text-red-500">
+                {errors.confirmPassword.message}
+              </p>
             )}
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full text-xs">
-            {loading ? (
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full text-xs"
+          >
+            {isSubmitting ? (
               <FaSpinner className="animate-spin w-4 h-4 mr-2" />
             ) : (
               'Registrar'

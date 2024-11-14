@@ -1,47 +1,75 @@
-import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '@/schemas/registerSchema';
-import { z } from 'zod';
+import { registerUser } from '@/action/register';
+import { toast } from 'react-toastify';
 
 export function useRegisterForm() {
-  const [userRegister, setUserRegister] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setError,
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
-
-  const handleChange =
-    (field: keyof typeof userRegister) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUserRegister((prev) => ({ ...prev, [field]: e.target.value }));
-    };
-
-  const validateForm = () => {
+  const onSubmit: SubmitHandler<typeof registerSchema._input> = async (
+    data,
+  ) => {
     try {
-      registerSchema.parse(userRegister);
-      setErrors({});
-      return true;
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          fieldErrors[err.path[0]] = err.message;
-        });
-        setErrors(fieldErrors);
+      const result = await registerUser(data);
+
+      if (result.error) {
+        setError('email', { type: 'server', message: result.error });
+        return;
       }
-      return false;
+
+      toast.success('Registrado com sucesso, por favor, faça login!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      setError('email', {
+        type: 'server',
+        message:
+          'Alguma coisa deu errado. Por favor, tente novamente mais tarde.',
+      });
+
+      toast.error(
+        'Alguma coisa deu errado. Por favor, tente novamente mais tarde.',
+        {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        },
+      );
+
+      console.error(error);
     }
   };
 
   return {
-    userRegister,
-    handleChange,
-    validateForm,
+    register,
+    handleSubmit,
     errors,
-    loading,
-    setLoading,
+    isSubmitting,
+    onSubmit,
   };
 }

@@ -1,27 +1,45 @@
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
 import { useState } from 'react';
 import { Input } from './ui/input';
+import { UseFormRegister } from 'react-hook-form'; // Importar os tipos necessários
 
-export default function InputPassword(props: {
+interface InputPasswordProps {
   id: string;
   placeholder: string;
   required?: boolean;
   className?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
-}) {
+  register: UseFormRegister<{
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }>;
+  name: 'name' | 'email' | 'password' | 'confirmPassword';
+}
+
+export default function InputPassword({
+  id,
+  placeholder,
+  required,
+  className,
+  value,
+  register,
+  name,
+}: InputPasswordProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="relative">
       <Input
-        id={props.id}
+        id={id}
         type={showPassword ? 'text' : 'password'}
-        placeholder={props.placeholder}
-        required={props.required}
-        className={props.className}
-        onChange={props.onChange}
-        value={props.value}
+        placeholder={placeholder}
+        required={required}
+        className={className}
+        value={value}
+        {...register(name)}
       />
       <button
         type="button"

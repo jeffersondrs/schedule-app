@@ -9,7 +9,7 @@ interface UserInformations {
   name: string;
 }
 
-export const register = async (values: UserInformations) => {
+export const registerUser = async (values: UserInformations) => {
   const { email, password, name } = values;
 
   try {
@@ -17,7 +17,7 @@ export const register = async (values: UserInformations) => {
     const userFound = await User.findOne({ email });
     if (userFound) {
       return {
-        error: 'Email already exists!',
+        error: 'E-mail já cadastrado. Por favor, fornecer outro e-mail.',
       };
     }
 
